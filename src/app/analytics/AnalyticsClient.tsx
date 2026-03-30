@@ -207,14 +207,14 @@ export default function AnalyticsClient({ applications }: AnalyticsClientProps) 
              <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center border border-white/20">
                 <TrendingUp className="w-5 h-5 text-white" />
              </div>
-             <h3 className="text-2xl font-bold tracking-tight text-white">Application Health</h3>
-             <p className="text-xs font-medium text-white/50 leading-relaxed uppercase tracking-widest">Efficiency metrics</p>
+             <h3 className="text-2xl font-bold tracking-tight text-white">Search Progress</h3>
+             <p className="text-xs font-medium text-white/50 leading-relaxed uppercase tracking-widest">Your search statistics</p>
            </div>
            
            <div className="space-y-8 relative z-10">
               <div className="space-y-3">
                 <div className="flex justify-between items-end">
-                   <p className="text-[10px] font-black text-white/40 uppercase tracking-widest">Interview Pull</p>
+                    <p className="text-[10px] font-black text-white/40 uppercase tracking-widest">Interviews landed</p>
                    <p className="text-2xl font-bold font-display text-white">{interviewRate}%</p>
                 </div>
                 <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
@@ -229,7 +229,7 @@ export default function AnalyticsClient({ applications }: AnalyticsClientProps) 
 
                <div className="space-y-3">
                 <div className="flex justify-between items-end">
-                   <p className="text-[10px] font-black text-white/40 uppercase tracking-widest">Offer Ratio</p>
+                    <p className="text-[10px] font-black text-white/40 uppercase tracking-widest">Offers landed</p>
                    <p className="text-2xl font-bold font-display text-white">{successRate}%</p>
                 </div>
                 <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">

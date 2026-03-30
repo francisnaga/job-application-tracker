@@ -36,7 +36,7 @@ export default function ProfileClient({ user, profile, appCount }: ProfileClient
   // Stats for the Bento Hub
   const metrics = [
     { label: 'Profile Status', value: profile?.target_role ? 'Complete' : 'Initial', icon: Shield, color: 'text-green-500' },
-    { label: 'Target Salary', value: profile?.target_salary || '$0k', icon: DollarSign, color: 'text-purple-500' },
+    { label: 'Salary Target', value: profile?.target_salary || '$0k', icon: DollarSign, color: 'text-purple-500' },
   ];
 
   return (
@@ -128,7 +128,7 @@ export default function ProfileClient({ user, profile, appCount }: ProfileClient
             >
                <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-xl font-bold text-foreground tracking-tight">Professional Bio</h3>
+                    <h3 className="text-xl font-bold text-foreground tracking-tight">About Me</h3>
                     <Compass className="w-5 h-5 text-primary opacity-30" />
                   </div>
                   <p className="text-sm font-medium text-muted-foreground leading-relaxed italic max-w-2xl">
