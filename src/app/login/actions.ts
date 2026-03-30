@@ -2,15 +2,19 @@
 
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
-import { getURL } from '@/lib/utils';
+import { headers } from 'next/headers';
 
 export async function loginWithGoogle() {
   const supabase = await createClient();
+  const headersList = await headers();
+  const host = headersList.get('host');
+  const protocol = headersList.get('x-forwarded-proto') || 'https';
+  const origin = `${protocol}://${host}`;
   
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
     options: {
-      redirectTo: `${getURL()}auth/callback`,
+      redirectTo: `${origin}/auth/callback`,
     },
   });
 
