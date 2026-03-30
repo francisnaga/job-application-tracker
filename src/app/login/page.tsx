@@ -43,7 +43,7 @@ function LoginContent() {
                 Vantage
               </h1>
               <p className="text-muted-foreground font-medium leading-relaxed">
-                Log in to your high-performance career intelligence suite.
+                Log in to your career dashboard.
               </p>
             </div>
           </div>

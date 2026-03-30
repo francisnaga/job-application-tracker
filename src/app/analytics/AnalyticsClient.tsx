@@ -68,10 +68,10 @@ export default function AnalyticsClient({ applications }: AnalyticsClientProps) 
       className="space-y-12 pb-20"
     >
       <header className="space-y-4">
-        <h1 className="text-4xl font-bold tracking-tighter text-foreground font-display">Performance Intelligence</h1>
+        <h1 className="text-4xl font-bold tracking-tighter text-foreground font-display">Performance Metrics</h1>
         <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.25em] flex items-center gap-2">
           <Compass className="w-4 h-4 text-primary animate-spin-slow" />
-          Strategic Pipeline Analytics Active
+          Your Application Analytics
         </p>
       </header>
 
@@ -107,7 +107,7 @@ export default function AnalyticsClient({ applications }: AnalyticsClientProps) 
                    <p className="text-xl font-bold text-foreground">{last6Months.sort((a,b) => b.count - a.count)[0].count > 0 ? last6Months.sort((a,b) => b.count - a.count)[0].month : 'No data yet'}</p>
                 </div>
                 <div className="p-5 rounded-2xl bg-primary text-white shadow-xl shadow-primary/20">
-                   <p className="text-[10px] font-bold text-white/70 uppercase tracking-widest mb-2">Operational Status</p>
+                   <p className="text-[10px] font-bold text-white/70 uppercase tracking-widest mb-2">Pipeline Status</p>
                    <p className="text-xl font-bold">{total > 0 ? (total > 10 ? 'High Performance' : 'Consistent') : 'Ready to Start'}</p>
                 </div>
              </div>
@@ -244,7 +244,7 @@ export default function AnalyticsClient({ applications }: AnalyticsClientProps) 
            </div>
 
            <button className="w-full py-5 bg-white text-primary rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-white/90 transition-all active:scale-95 relative z-10">
-             Share Intelligence
+             Share Report
            </button>
         </div>
       </div>

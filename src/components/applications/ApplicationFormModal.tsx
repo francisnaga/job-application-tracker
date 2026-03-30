@@ -56,7 +56,7 @@ export default function ApplicationFormModal({ isOpen, onClose, initialData }: A
           .from('applications')
           .insert([{ ...formData, user_id: user.id }]);
         if (error) throw error;
-        toast.success('Strategic position logged.');
+        toast.success('Application saved.');
       }
 
       onClose();
@@ -230,7 +230,7 @@ export default function ApplicationFormModal({ isOpen, onClose, initialData }: A
                       value={formData.notes}
                       onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                       className="block w-full pl-12 pr-4 py-4 bg-secondary/50 border-none rounded-2xl text-sm font-bold text-foreground focus:ring-2 focus:ring-primary/20 transition-all resize-none h-32 placeholder:text-muted-foreground"
-                      placeholder="Add strategic notes or contact info..."
+                      placeholder="Add notes or contact info..."
                     />
                   </div>
                 </div>

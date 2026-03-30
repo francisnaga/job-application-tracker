@@ -35,7 +35,7 @@ export default function ProfileClient({ user, profile, appCount }: ProfileClient
 
   // Stats for the Bento Hub
   const metrics = [
-    { label: 'Strategic Leads', value: appCount, icon: Briefcase, color: 'text-primary' },
+    { label: 'Applications', value: appCount, icon: Briefcase, color: 'text-primary' },
     { label: 'Identity Status', value: profile?.target_role ? 'Optimized' : 'Draft', icon: Shield, color: 'text-green-500' },
     { label: 'Market Tier', value: profile?.target_salary || '$0k', icon: DollarSign, color: 'text-purple-500' },
   ];
@@ -48,8 +48,8 @@ export default function ProfileClient({ user, profile, appCount }: ProfileClient
         <header className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
           <div className="space-y-4">
             <h1 className="text-5xl font-bold tracking-tighter text-foreground font-display leading-tight">
-              Strategic <br />
-              <span className="text-primary italic">Identity</span>
+              Your <br />
+              <span className="text-primary italic">Profile</span>
             </h1>
             <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.3em] flex items-center gap-3">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
@@ -133,15 +133,14 @@ export default function ProfileClient({ user, profile, appCount }: ProfileClient
                     <Compass className="w-5 h-5 text-primary opacity-30" />
                   </div>
                   <p className="text-sm font-medium text-muted-foreground leading-relaxed italic max-w-2xl">
-                    {profile?.bio || "Define your visual and tactical identity. Strategic candidates leverage Vanguard's intelligence hub to dominate high-frequency search corridors."}
+                    {profile?.bio || "Add a bio to highlight your professional experience and career goals."}
                   </p>
                </div>
                
-               <div className="mt-10 border-t border-border pt-6 flex items-center justify-between">
-                  <div className="flex items-center gap-4">
-                     <span className="text-[10px] font-black text-primary uppercase tracking-[0.2em] bg-primary/5 px-3 py-1.5 rounded-lg border border-primary/20">Operational</span>
-                     <span className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em]">Verified Professional</span>
-                  </div>
+               <div className="hidden md:flex items-center gap-2 mt-4 opacity-50">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                  <span className="text-[10px] font-black text-primary uppercase tracking-[0.2em] bg-primary/5 px-3 py-1.5 rounded-lg border border-primary/20">Active</span>
+                  <span className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em]">Verified Professional</span>
                   <ArrowUpRight className="w-5 h-5 text-muted-foreground opacity-30" />
                </div>
             </motion.div>
@@ -167,7 +166,7 @@ export default function ProfileClient({ user, profile, appCount }: ProfileClient
              </section>
 
              <section className="space-y-4">
-                <p className="px-4 text-[10px] font-black uppercase text-muted-foreground tracking-[0.3em]">Operational Security</p>
+                <p className="px-4 text-[10px] font-black uppercase text-muted-foreground tracking-[0.3em]">Account Settings</p>
                 <form action="/auth/sign-out" method="POST">
                    <button type="submit" className="w-full surface bg-card border-border p-6 flex items-center justify-between group hover:bg-destructive/10 transition-all text-left">
                      <div className="flex items-center gap-4">
@@ -175,7 +174,7 @@ export default function ProfileClient({ user, profile, appCount }: ProfileClient
                           <LogOut className="w-4 h-4 text-destructive" />
                         </div>
                         <div className="text-left">
-                          <p className="text-[10px] font-black text-destructive uppercase tracking-widest mb-1">Session Protocol</p>
+                          <p className="text-[10px] font-black text-destructive uppercase tracking-widest mb-1">Current Session</p>
                           <p className="text-sm font-bold text-foreground group-hover:text-destructive transition-colors">Initiate Sign Out</p>
                         </div>
                      </div>

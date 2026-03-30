@@ -47,12 +47,12 @@ export default function ProfileEditModal({ isOpen, onClose, initialData }: Profi
       
       if (error) throw error;
       
-      toast.success("Strategic identity refined successfully.");
+      toast.success("Profile updated successfully.");
       onClose();
       router.refresh();
     } catch (error) {
       console.error('Error updating identity:', error);
-      toast.error('Failed to update strategic identity. Please check your connection.');
+      toast.error('Failed to update profile. Please try again.');
     } finally {
       setIsLoading(false);
     }

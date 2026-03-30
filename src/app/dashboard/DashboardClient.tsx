@@ -66,7 +66,7 @@ export default function DashboardClient({ user, applications, profile, documentC
             </h1>
             <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.3em] flex items-center gap-3">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              Strategic Pipeline Operational
+              Your Applications Dashboard
             </p>
           </div>
 
@@ -83,7 +83,7 @@ export default function DashboardClient({ user, applications, profile, documentC
           </div>
         </header>
 
-        {/* Bento Intelligence Grid */}
+        {/* Dashboard Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 auto-rows-[220px]">
           
           {/* Main Chart Box */}
@@ -248,7 +248,7 @@ export default function DashboardClient({ user, applications, profile, documentC
             </motion.div>
           </div>
 
-          {/* Intelligence Suite Section: Profile & Documents */}
+          {/* Profile & Documents */}
           <div className="md:col-span-6 grid grid-cols-2 gap-8 h-full mt-4 md:mt-0">
             <Link href="/profile">
               <motion.div 

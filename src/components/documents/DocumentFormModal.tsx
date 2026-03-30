@@ -42,20 +42,20 @@ export default function DocumentFormModal({ isOpen, onClose, initialData }: Docu
           .update(formData)
           .eq('id', initialData.id);
         if (error) throw error;
-        toast.success("Strategic asset refined successfully.");
+        toast.success("Document updated successfully.");
       } else {
         const { error } = await supabase
           .from('documents')
           .insert([{ ...formData, user_id: user.id }]);
         if (error) throw error;
-        toast.success("Strategic asset successfully archived.");
+        toast.success("Document added successfully.");
       }
       
       onClose();
       router.refresh();
     } catch (error) {
       console.error('Error saving document:', error);
-      toast.error('Failed to archive asset. Please check your connection or schema.');
+      toast.error('Failed to add document. Please try again.');
     } finally {
       setIsLoading(false);
     }

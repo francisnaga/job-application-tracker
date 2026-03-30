@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, Briefcase, TrendingUp, Target, ShieldCheck, Sparkles, LayoutDashboard, Compass } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { ThemeToggle } from '@/components/layout/ThemeToggle';
 
 export default function LandingPage() {
   return (
@@ -26,6 +27,7 @@ export default function LandingPage() {
           </div>
         </div>
         <div className="flex items-center gap-4 md:gap-8">
+          <ThemeToggle />
           <Link href="/login" className="hidden md:inline text-[10px] md:text-sm font-bold text-muted-foreground hover:text-foreground transition-colors uppercase tracking-[0.2em] px-1 md:px-2 whitespace-nowrap">
             Sign In
           </Link>
@@ -48,13 +50,13 @@ export default function LandingPage() {
             <div>
               <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-10 backdrop-blur-md">
                 <Sparkles className="w-4 h-4 text-primary" />
-                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-primary">Smart Job Tracker</span>
+                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-primary">Job Application Tracker</span>
               </div>
               
               <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-[1.05] mb-10 font-display text-foreground">
                 Landing your dream <br />
-                <span className="text-primary italic">role</span> is now a <br />
-                <span className="text-gradient">smart strategy.</span>
+                <span className="text-primary italic">role</span> is now <br />
+                <span className="text-gradient">effortless.</span>
               </h1>
               
               <p className="text-xl md:text-2xl text-muted-foreground font-medium max-w-2xl mb-14 leading-relaxed mx-auto lg:mx-0">
@@ -63,7 +65,7 @@ export default function LandingPage() {
 
               <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start">
                 <Link href="/login" className="w-full sm:w-auto px-12 py-5.5 bg-primary text-primary-foreground rounded-2xl text-lg font-black uppercase tracking-widest shadow-2xl shadow-primary/30 hover:shadow-primary/50 hover:-translate-y-1.5 transition-all active:scale-95 flex items-center justify-center gap-4">
-                  Unlock Dashboard <ArrowRight className="w-5.5 h-5.5" />
+                Unlock Tracker <ArrowRight className="w-5.5 h-5.5" />
                 </Link>
                 <div className="flex items-center -space-x-3.5">
                   {[1, 2, 3, 4].map((i) => (
@@ -126,8 +128,8 @@ export default function LandingPage() {
                 <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center border border-primary/20 group-hover:rotate-6 transition-transform">
                    <LayoutDashboard className="w-8 h-8 text-primary shadow-glow" />
                 </div>
-                <h3 className="text-4xl font-bold tracking-tight text-foreground">The Visual Pipeline</h3>
-                <p className="text-muted-foreground text-xl max-w-sm leading-relaxed">Every application, status, and milestone mapped in one elite workspace.</p>
+                <h3 className="text-4xl font-bold tracking-tight text-foreground">Visual Dashboard</h3>
+                <p className="text-muted-foreground text-xl max-w-sm leading-relaxed">View all your applications, interview stages, and notes perfectly organized.</p>
              </div>
           </motion.div>
 
@@ -159,8 +161,8 @@ export default function LandingPage() {
                 <ShieldCheck className="w-8 h-8 text-green-500" />
              </div>
              <div className="space-y-4">
-                <h3 className="text-3xl font-bold tracking-tight text-foreground">Private. Always.</h3>
-                <p className="text-muted-foreground text-lg leading-relaxed">Your search history is yours. Encrypted, secure, and decentralized data storage.</p>
+                <h3 className="text-3xl font-bold tracking-tight text-foreground">Secure & Private</h3>
+                <p className="text-muted-foreground text-lg leading-relaxed">Your job search history is yours. We keep your data safe and private.</p>
              </div>
           </motion.div>
 
@@ -172,8 +174,8 @@ export default function LandingPage() {
              className="md:col-span-7 surface p-12 lg:p-14 group border-border/50 flex items-center justify-between shadow-premium bg-gradient-to-br from-card to-background"
           >
              <div className="max-w-xs space-y-6">
-                <h3 className="text-3xl font-bold tracking-tight text-foreground">Targeted Success</h3>
-                 <p className="text-muted-foreground text-lg leading-relaxed">Never miss a follow-up with built-in task reminders.</p>
+                <h3 className="text-3xl font-bold tracking-tight text-foreground">Never Forget</h3>
+                 <p className="text-muted-foreground text-lg leading-relaxed">Keep track of every follow-up date and interview block.</p>
              </div>
              <div className="w-32 h-32 rounded-full border-2 border-primary/20 flex items-center justify-center group-hover:scale-110 group-hover:border-primary/50 transition-all duration-700 bg-primary/5">
                 <Target className="w-12 h-12 text-primary animate-pulse shadow-glow" />
