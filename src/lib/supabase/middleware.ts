@@ -38,14 +38,27 @@ export async function updateSession(request: NextRequest) {
     // Redirect unauthenticated users to the login page
     const url = request.nextUrl.clone();
     url.pathname = '/login';
-    return NextResponse.redirect(url);
+    const redirectResponse = NextResponse.redirect(url);
+    // Persist any cookie updates (like token refreshes) to the redirect
+    supabaseResponse.cookies.getAll().forEach((cookie) => {
+      redirectResponse.cookies.set(cookie.name, cookie.value, cookie);
+    });
+    return redirectResponse;
   }
   
   // Redirect authenticated users away from the login page to the dashboard
   if (user && isAuthRoute) {
+    if (request.nextUrl.pathname === '/auth/callback') {
+      return supabaseResponse;
+    }
     const url = request.nextUrl.clone();
     url.pathname = '/dashboard';
-    return NextResponse.redirect(url);
+    const redirectResponse = NextResponse.redirect(url);
+    // Persist any cookie updates (like token refreshes) to the redirect
+    supabaseResponse.cookies.getAll().forEach((cookie) => {
+      redirectResponse.cookies.set(cookie.name, cookie.value, cookie);
+    });
+    return redirectResponse;
   }
 
   return supabaseResponse;
