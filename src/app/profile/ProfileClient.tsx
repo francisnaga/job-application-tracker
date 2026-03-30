@@ -35,9 +35,8 @@ export default function ProfileClient({ user, profile, appCount }: ProfileClient
 
   // Stats for the Bento Hub
   const metrics = [
-    { label: 'Applications', value: appCount, icon: Briefcase, color: 'text-primary' },
-    { label: 'Identity Status', value: profile?.target_role ? 'Optimized' : 'Draft', icon: Shield, color: 'text-green-500' },
-    { label: 'Market Tier', value: profile?.target_salary || '$0k', icon: DollarSign, color: 'text-purple-500' },
+    { label: 'Profile Status', value: profile?.target_role ? 'Complete' : 'Initial', icon: Shield, color: 'text-green-500' },
+    { label: 'Target Salary', value: profile?.target_salary || '$0k', icon: DollarSign, color: 'text-purple-500' },
   ];
 
   return (
@@ -53,7 +52,7 @@ export default function ProfileClient({ user, profile, appCount }: ProfileClient
             </h1>
             <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.3em] flex items-center gap-3">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              Professional Metadata Management
+              Manage your profile details
             </p>
           </div>
 
@@ -63,7 +62,7 @@ export default function ProfileClient({ user, profile, appCount }: ProfileClient
                className="flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-primary/90 transition-all shadow-2xl shadow-primary/30 active:scale-95"
              >
                 <User className="w-4 h-4" />
-                Refine Identity
+                Edit Profile
              </button>
           </div>
         </header>
@@ -129,7 +128,7 @@ export default function ProfileClient({ user, profile, appCount }: ProfileClient
             >
                <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-xl font-bold text-foreground tracking-tight">Executive Summary</h3>
+                    <h3 className="text-xl font-bold text-foreground tracking-tight">Professional Bio</h3>
                     <Compass className="w-5 h-5 text-primary opacity-30" />
                   </div>
                   <p className="text-sm font-medium text-muted-foreground leading-relaxed italic max-w-2xl">
@@ -140,7 +139,7 @@ export default function ProfileClient({ user, profile, appCount }: ProfileClient
                <div className="hidden md:flex items-center gap-2 mt-4 opacity-50">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
                   <span className="text-[10px] font-black text-primary uppercase tracking-[0.2em] bg-primary/5 px-3 py-1.5 rounded-lg border border-primary/20">Active</span>
-                  <span className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em]">Verified Professional</span>
+                  <span className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em]">Verified Candidate</span>
                   <ArrowUpRight className="w-5 h-5 text-muted-foreground opacity-30" />
                </div>
             </motion.div>
@@ -157,7 +156,7 @@ export default function ProfileClient({ user, profile, appCount }: ProfileClient
                           <Mail className="w-4 h-4 text-muted-foreground" />
                         </div>
                         <div className="text-left">
-                          <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-1">Email Coordinates</p>
+                          <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-1">Email Address</p>
                           <p className="text-sm font-bold text-foreground">{user.email}</p>
                         </div>
                       </div>
@@ -174,8 +173,8 @@ export default function ProfileClient({ user, profile, appCount }: ProfileClient
                           <LogOut className="w-4 h-4 text-destructive" />
                         </div>
                         <div className="text-left">
-                          <p className="text-[10px] font-black text-destructive uppercase tracking-widest mb-1">Current Session</p>
-                          <p className="text-sm font-bold text-foreground group-hover:text-destructive transition-colors">Initiate Sign Out</p>
+                          <p className="text-[10px] font-black text-destructive uppercase tracking-widest mb-1">Account</p>
+                          <p className="text-sm font-bold text-foreground group-hover:text-destructive transition-colors">Sign Out</p>
                         </div>
                      </div>
                      <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-destructive transition-all" />

@@ -55,10 +55,10 @@ export default function AnalyticsClient({ applications }: AnalyticsClientProps) 
   }).reverse();
 
   const metrics = [
-    { label: 'Total Pipeline', value: total, icon: Briefcase, color: 'text-primary', bg: 'bg-primary/10' },
+    { label: 'Total Applications', value: total, icon: Briefcase, color: 'text-primary', bg: 'bg-primary/10' },
     { label: 'Interview Rate', value: `${interviewRate}%`, icon: Target, color: 'text-purple-500', bg: 'bg-purple-500/10' },
     { label: 'Offer Rate', value: `${successRate}%`, icon: CheckCircle2, color: 'text-green-500', bg: 'bg-green-500/10' },
-    { label: 'Closed Cases', value: rejections, icon: XCircle, color: 'text-rose-500', bg: 'bg-rose-500/10' },
+    { label: 'Rejected', value: rejections, icon: XCircle, color: 'text-rose-500', bg: 'bg-rose-500/10' },
   ];
 
   return (
@@ -98,8 +98,8 @@ export default function AnalyticsClient({ applications }: AnalyticsClientProps) 
                 <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center">
                   <Activity className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-2xl font-bold tracking-tight text-foreground leading-tight">Search Trends</h3>
-                <p className="text-sm font-medium text-muted-foreground leading-relaxed italic">Analysis of monthly application volume to identify search consistency and peak output.</p>
+                <h3 className="text-2xl font-bold tracking-tight text-foreground leading-tight">Monthly Activity</h3>
+                <p className="text-sm font-medium text-muted-foreground leading-relaxed italic">Overview of your application volume over time.</p>
              </div>
              <div className="grid grid-cols-1 gap-4">
                 <div className="p-5 rounded-2xl bg-secondary/30 border border-border/5 group hover:bg-secondary/50 transition-colors">
@@ -107,8 +107,8 @@ export default function AnalyticsClient({ applications }: AnalyticsClientProps) 
                    <p className="text-xl font-bold text-foreground">{last6Months.sort((a,b) => b.count - a.count)[0].count > 0 ? last6Months.sort((a,b) => b.count - a.count)[0].month : 'No data yet'}</p>
                 </div>
                 <div className="p-5 rounded-2xl bg-primary text-white shadow-xl shadow-primary/20">
-                   <p className="text-[10px] font-bold text-white/70 uppercase tracking-widest mb-2">Pipeline Status</p>
-                   <p className="text-xl font-bold">{total > 0 ? (total > 10 ? 'High Performance' : 'Consistent') : 'Ready to Start'}</p>
+                   <p className="text-[10px] font-bold text-white/70 uppercase tracking-widest mb-2">Search Status</p>
+                   <p className="text-xl font-bold">{total > 0 ? (total > 10 ? 'High Output' : 'Active') : 'Ready to Start'}</p>
                 </div>
              </div>
           </div>
@@ -157,7 +157,7 @@ export default function AnalyticsClient({ applications }: AnalyticsClientProps) 
         {/* Status Breakdown (Bento Standard) */}
         <div className="lg:col-span-8 surface p-10 border-border/10 h-[450px] bg-card">
           <div className="flex items-center justify-between mb-10">
-            <h3 className="text-xl font-bold text-foreground">Pipeline Distribution</h3>
+            <h3 className="text-xl font-bold text-foreground">Application Breakdown</h3>
             <PieIcon className="w-5 h-5 text-muted-foreground opacity-30" />
           </div>
           <div className="h-full w-full flex items-center justify-center">
@@ -207,8 +207,8 @@ export default function AnalyticsClient({ applications }: AnalyticsClientProps) 
              <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center border border-white/20">
                 <TrendingUp className="w-5 h-5 text-white" />
              </div>
-             <h3 className="text-2xl font-bold tracking-tight text-white">Search Discipline</h3>
-             <p className="text-xs font-medium text-white/50 leading-relaxed uppercase tracking-widest">Calculated conversion metrics</p>
+             <h3 className="text-2xl font-bold tracking-tight text-white">Application Health</h3>
+             <p className="text-xs font-medium text-white/50 leading-relaxed uppercase tracking-widest">Efficiency metrics</p>
            </div>
            
            <div className="space-y-8 relative z-10">

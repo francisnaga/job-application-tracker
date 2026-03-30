@@ -111,7 +111,7 @@ export default function ApplicationsClient({ initialData }: ApplicationsClientPr
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4.5 w-4.5 text-muted-foreground" />
               <input
                 type="text"
-                placeholder="Search Pipeline..."
+                placeholder="Search applications..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-12 pr-4 py-3.5 bg-background border-white/5 rounded-2xl text-sm font-bold text-foreground focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-muted-foreground/50 backdrop-blur-xl"

@@ -49,7 +49,7 @@ export default function ApplicationFormModal({ isOpen, onClose, initialData }: A
           .update(formData)
           .eq('id', initialData.id);
         if (error) throw error;
-        toast.success('Pipeline updated successfully.');
+        toast.success('Application updated successfully.');
       } else {
         // Insert
         const { error } = await supabase

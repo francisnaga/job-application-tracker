@@ -94,7 +94,7 @@ export default function DashboardClient({ user, applications, profile, documentC
           >
             <div className="flex items-center justify-between mb-12 z-10">
               <div className="space-y-1">
-                <h3 className="text-2xl font-bold text-foreground tracking-tight">Search Velocity</h3>
+                <h3 className="text-2xl font-bold text-foreground tracking-tight">Application Activity</h3>
                 <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">Active Search Volume • Last 7 Days</p>
               </div>
               <div className="flex items-center gap-3">
@@ -151,7 +151,7 @@ export default function DashboardClient({ user, applications, profile, documentC
             </div>
             <div className="relative z-10">
               <p className="text-7xl font-bold tracking-tighter text-foreground font-display">{total}</p>
-              <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.25em] mt-3">Active Pipeline</p>
+              <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.25em] mt-3">Total Applications</p>
             </div>
             <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors" />
           </motion.div>
@@ -266,7 +266,7 @@ export default function DashboardClient({ user, applications, profile, documentC
                   <p className="text-2xl font-bold text-foreground tracking-tight leading-tight">
                     {profile?.target_role ? 'Optimized' : 'Draft'}
                   </p>
-                  <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest mt-3">Identity Status</p>
+                  <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest mt-3">Profile Status</p>
                 </div>
               </motion.div>
             </Link>

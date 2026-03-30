@@ -21,8 +21,8 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Vantage | Elite Career Strategy",
-  description: "Your comprehensive dashboard for job application tracking and career management.",
+  title: "Vantage | Career Dashboard",
+  description: "Your comprehensive dashboard for job application tracking and status management.",
 };
 
 export default function RootLayout({
@@ -37,7 +37,7 @@ export default function RootLayout({
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >
