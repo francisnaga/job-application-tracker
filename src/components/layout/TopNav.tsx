@@ -26,7 +26,7 @@ export function TopNav() {
           <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
             <Compass className="w-4 h-4 text-primary-foreground" />
           </div>
-          <span className="text-lg font-bold tracking-tighter uppercase italic font-display">Vantage</span>
+          <span className="text-lg font-bold tracking-tighter uppercase font-display">Vantage</span>
         </div>
 
         {/* Desktop Breadcrumbs */}

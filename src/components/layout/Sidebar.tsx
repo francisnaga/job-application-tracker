@@ -40,7 +40,7 @@ export function Sidebar() {
             <Compass className="w-5.5 h-5.5" />
           </div>
           <div className="flex flex-col -gap-1">
-            <span className="text-2xl font-bold tracking-tighter font-display uppercase italic">Vantage</span>
+            <span className="text-2xl font-bold tracking-tighter font-display uppercase">Vantage</span>
             <span className="text-[8px] font-black uppercase tracking-[0.2em] text-primary/60 ml-0.5">By Naga</span>
           </div>
         </Link>

@@ -22,17 +22,19 @@ export default function LandingPage() {
             <Compass className="w-5 md:w-5.5 h-5 md:h-5.5" />
           </div>
           <div className="flex flex-col -gap-1">
-            <span className="text-xl md:text-2xl font-bold tracking-tighter font-display uppercase italic text-foreground">Vantage</span>
+            <span className="text-xl md:text-2xl font-bold tracking-tighter font-display uppercase text-foreground">Vantage</span>
             <span className="text-[7px] md:text-[8px] font-black uppercase tracking-[0.2em] text-primary/60 ml-0.5">By Naga</span>
           </div>
         </div>
-        <div className="flex items-center gap-4 md:gap-8">
-          <ThemeToggle />
-          <Link href="/login" className="hidden md:inline text-[10px] md:text-sm font-bold text-muted-foreground hover:text-foreground transition-colors uppercase tracking-[0.2em] px-1 md:px-2 whitespace-nowrap">
-            Sign In
-          </Link>
+        <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3">
+            <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/30 hidden md:block">Theme</span>
+            <div className="scale-75 origin-right">
+              <ThemeToggle />
+            </div>
+          </div>
           <Link href="/login" className="px-6 md:px-8 py-2.5 md:py-3 bg-foreground text-background rounded-full text-[10px] md:text-sm font-black uppercase tracking-[0.2em] hover:scale-105 transition-all shadow-xl shadow-foreground/10 active:scale-95 group flex items-center gap-2 whitespace-nowrap">
-            Get Started <ArrowRight className="w-3.5 md:w-4 h-3.5 md:h-4 group-hover:translate-x-1 transition-transform" />
+            Sign In <ArrowRight className="w-3.5 md:w-4 h-3.5 md:h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
       </nav>
@@ -65,7 +67,7 @@ export default function LandingPage() {
 
               <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start">
                 <Link href="/login" className="w-full sm:w-auto px-12 py-5.5 bg-primary text-primary-foreground rounded-2xl text-lg font-black uppercase tracking-widest shadow-2xl shadow-primary/30 hover:shadow-primary/50 hover:-translate-y-1.5 transition-all active:scale-95 flex items-center justify-center gap-4">
-                Unlock Tracker <ArrowRight className="w-5.5 h-5.5" />
+                Get started <ArrowRight className="w-5.5 h-5.5" />
                 </Link>
                 <div className="flex items-center -space-x-3.5">
                   {[1, 2, 3, 4].map((i) => (
@@ -192,7 +194,7 @@ export default function LandingPage() {
                <Compass className="w-6 h-6" />
              </div>
              <div className="text-center space-y-2">
-               <h2 className="font-bold tracking-tighter text-2xl uppercase italic text-foreground">Vantage</h2>
+               <h2 className="font-bold tracking-tighter text-2xl uppercase text-foreground">Vantage</h2>
                <p className="text-muted-foreground font-medium text-[10px] tracking-[0.3em] uppercase">By Naga • Build your legacy.</p>
              </div>
           </div>

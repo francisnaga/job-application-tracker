@@ -39,7 +39,7 @@ function LoginContent() {
               <Compass className="w-7 h-7" />
             </div>
             <div className="space-y-2">
-              <h1 className="text-3xl font-bold tracking-tighter text-foreground font-display uppercase italic">
+              <h1 className="text-3xl font-bold tracking-tighter text-foreground font-display uppercase">
                 Vantage
               </h1>
               <p className="text-muted-foreground font-medium leading-relaxed">
