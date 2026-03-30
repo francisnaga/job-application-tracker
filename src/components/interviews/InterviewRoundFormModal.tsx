@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import { createBrowserClient } from '@supabase/ssr';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
+import { toast } from 'sonner';
 
 interface InterviewRoundFormModalProps {
   isOpen: boolean;
@@ -52,9 +53,10 @@ export default function InterviewRoundFormModal({ isOpen, onClose, applications,
       
       onClose();
       router.refresh();
+      toast.success(initialData?.id ? 'Interview updated.' : 'Interview added.');
     } catch (error) {
       console.error('Error saving round:', error);
-      alert('Failed to save interview round.');
+      toast.error('Failed to save interview round. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -87,9 +89,9 @@ export default function InterviewRoundFormModal({ isOpen, onClose, applications,
             <div className="flex items-center justify-between p-8 border-b border-border/50">
               <div className="space-y-1">
                 <h2 className="text-2xl font-bold tracking-tight text-foreground font-display">
-                  {initialData ? 'Refine Execution' : 'Log New Round'}
+                  {initialData ? 'Edit Interview' : 'Log Interview'}
                 </h2>
-                <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest">Performance Parameters & Feedback</p>
+                <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest">Interview Details</p>
               </div>
               <button 
                 onClick={onClose}
@@ -103,7 +105,7 @@ export default function InterviewRoundFormModal({ isOpen, onClose, applications,
               <form id="round-form" onSubmit={handleSubmit} className="space-y-10 pb-20 md:pb-0">
                 
                 <div className="space-y-2">
-                  <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Target Pipeline</label>
+                  <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Application</label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-muted-foreground/50">
                       <Briefcase className="h-5 w-5" />
@@ -128,7 +130,7 @@ export default function InterviewRoundFormModal({ isOpen, onClose, applications,
                 </div>
 
                 <div className="space-y-4">
-                  <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Execution Nature</label>
+                  <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Interview Type</label>
                   <div className="flex flex-wrap gap-2">
                     {rounds.map((round) => (
                       <button
@@ -149,7 +151,7 @@ export default function InterviewRoundFormModal({ isOpen, onClose, applications,
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Deployment Timestamp</label>
+                  <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Interview Date & Time</label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-muted-foreground/50">
                       <Calendar className="h-5 w-5" />
@@ -165,7 +167,7 @@ export default function InterviewRoundFormModal({ isOpen, onClose, applications,
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Execution Intel (Feedback)</label>
+                  <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Notes & Feedback</label>
                   <div className="relative">
                     <div className="absolute top-4 left-4 pointer-events-none text-muted-foreground/50">
                       <MessageSquare className="h-5 w-5" />
@@ -187,7 +189,7 @@ export default function InterviewRoundFormModal({ isOpen, onClose, applications,
                 onClick={onClose}
                 className="hidden sm:block px-8 py-4 text-xs font-black uppercase tracking-widest text-muted-foreground hover:text-foreground transition-all"
               >
-                Abort Log
+                Cancel
               </button>
               <button
                 type="submit"
@@ -198,7 +200,7 @@ export default function InterviewRoundFormModal({ isOpen, onClose, applications,
                 {isLoading ? "Saving..." : (
                   <>
                     <Save className="w-4 h-4 mr-1" />
-                    Archive Execution
+                    Save Interview
                   </>
                 )}
               </button>

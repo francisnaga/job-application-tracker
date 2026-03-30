@@ -11,12 +11,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 const navItems = [
   { name: 'Home', href: '/dashboard', icon: LayoutDashboard },
   { name: 'Apps', href: '/applications', icon: Briefcase },
-  { name: 'Docs', href: '/documents', icon: FileText },
 ];
 
 const rightNavItems = [
+  { name: 'Docs', href: '/documents', icon: FileText },
   { name: 'Network', href: '/networking', icon: Users },
-  { name: 'User', href: '/profile', icon: User },
 ];
 
 export function BottomNav() {

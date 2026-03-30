@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import { createBrowserClient } from '@supabase/ssr';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
+import { toast } from 'sonner';
 
 interface ContactFormModalProps {
   isOpen: boolean;
@@ -53,9 +54,10 @@ export default function ContactFormModal({ isOpen, onClose, initialData }: Conta
       
       onClose();
       router.refresh();
+      toast.success(initialData?.id ? 'Contact updated.' : 'Contact added.');
     } catch (error) {
       console.error('Error saving contact:', error);
-      alert('Failed to save contact. Please check your connection or schema.');
+      toast.error('Failed to save contact. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -86,9 +88,9 @@ export default function ContactFormModal({ isOpen, onClose, initialData }: Conta
             <div className="flex items-center justify-between p-8 border-b border-border/50">
               <div className="space-y-1">
                 <h2 className="text-2xl font-bold tracking-tight text-foreground font-display">
-                  {initialData ? 'Refine Alliance' : 'Initiate Connection'}
+                  {initialData ? 'Edit Contact' : 'Add Contact'}
                 </h2>
-                <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest">Strategic Network Asset Parameters</p>
+                <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest">Contact Details</p>
               </div>
               <button 
                 onClick={onClose}
@@ -103,7 +105,7 @@ export default function ContactFormModal({ isOpen, onClose, initialData }: Conta
                 
                 <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-2">
-                    <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Identity Name</label>
+                    <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Name</label>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-muted-foreground/50">
                         <User className="h-5 w-5" />
@@ -120,7 +122,7 @@ export default function ContactFormModal({ isOpen, onClose, initialData }: Conta
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Alliance Domain</label>
+                    <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Company</label>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-muted-foreground/50">
                         <Briefcase className="h-5 w-5" />
@@ -137,7 +139,7 @@ export default function ContactFormModal({ isOpen, onClose, initialData }: Conta
                 </section>
 
                 <div className="space-y-2">
-                  <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Strategic Role</label>
+                  <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Job Title</label>
                   <input
                     type="text"
                     value={formData.role}
@@ -149,7 +151,7 @@ export default function ContactFormModal({ isOpen, onClose, initialData }: Conta
 
                 <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-2">
-                    <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Signal Protocol (Email)</label>
+                    <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Email</label>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-muted-foreground/50">
                         <Mail className="h-5 w-5" />
@@ -165,7 +167,7 @@ export default function ContactFormModal({ isOpen, onClose, initialData }: Conta
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Universal Asset URL</label>
+                    <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">LinkedIn URL</label>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-muted-foreground/50">
                         <LinkIcon className="h-5 w-5" />
@@ -182,7 +184,7 @@ export default function ContactFormModal({ isOpen, onClose, initialData }: Conta
                 </section>
 
                 <div className="space-y-2">
-                  <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Engagement Timestamp</label>
+                  <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Last Contacted</label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-muted-foreground/50">
                       <Calendar className="h-5 w-5" />
@@ -204,7 +206,7 @@ export default function ContactFormModal({ isOpen, onClose, initialData }: Conta
                 onClick={onClose}
                 className="hidden sm:block px-8 py-4 text-xs font-black uppercase tracking-widest text-muted-foreground hover:text-foreground transition-all"
               >
-                Abort Protocol
+                Cancel
               </button>
               <button
                 type="submit"
@@ -215,7 +217,7 @@ export default function ContactFormModal({ isOpen, onClose, initialData }: Conta
                 {isLoading ? "Saving..." : (
                   <>
                     <Save className="w-4 h-4 mr-1" />
-                    Commit Asset
+                    Save Contact
                   </>
                 )}
               </button>

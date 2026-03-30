@@ -88,11 +88,11 @@ export default function DocumentFormModal({ isOpen, onClose, initialData }: Docu
             <div className="flex items-center justify-between p-8 border-b border-border/50">
               <div className="space-y-1">
                 <h2 className="text-2xl font-bold tracking-tight text-foreground font-display">
-                  {initialData ? 'Refine Asset' : 'Archive Strategic Asset'}
+                  {initialData ? 'Edit Document' : 'Add Document'}
                 </h2>
                 <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest flex items-center gap-2">
                    <ShieldCheck className="w-3 h-3 text-primary" />
-                   Professional Metadata Parameter Tuning
+                   Document Details
                 </p>
               </div>
               <button 
@@ -107,7 +107,7 @@ export default function DocumentFormModal({ isOpen, onClose, initialData }: Docu
               <form id="document-form" onSubmit={handleSubmit} className="space-y-10 pb-20 md:pb-0">
                 
                 <div className="space-y-2">
-                  <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Asset Nomenclature</label>
+                  <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Document Name</label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-muted-foreground/50">
                       <Archive className="h-5 w-5" />
@@ -124,7 +124,7 @@ export default function DocumentFormModal({ isOpen, onClose, initialData }: Docu
                 </div>
 
                 <div className="space-y-4">
-                  <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Asset Classification</label>
+                  <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Document Type</label>
                   <div className="flex flex-wrap gap-2 text-center">
                     {types.map((t) => (
                       <button
@@ -145,7 +145,7 @@ export default function DocumentFormModal({ isOpen, onClose, initialData }: Docu
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Strategic Asset Pointer (URL)</label>
+                  <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Document URL</label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-muted-foreground/50">
                       <LinkIcon className="h-5 w-5" />
@@ -169,7 +169,7 @@ export default function DocumentFormModal({ isOpen, onClose, initialData }: Docu
                 onClick={onClose}
                 className="hidden sm:block px-8 py-4 text-xs font-black uppercase tracking-widest text-muted-foreground hover:text-foreground transition-all"
               >
-                Abort Protocol
+                Cancel
               </button>
               <button
                 type="submit"
@@ -177,10 +177,10 @@ export default function DocumentFormModal({ isOpen, onClose, initialData }: Docu
                 disabled={isLoading}
                 className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-12 py-4 bg-primary text-primary-foreground rounded-2xl text-sm font-black uppercase tracking-widest shadow-premium shadow-primary/20 hover:bg-primary/90 transition-all active:scale-[0.98] disabled:opacity-70"
               >
-                {isLoading ? "Synchronizing Asset..." : (
+                {isLoading ? "Saving Document..." : (
                   <>
                     <Save className="w-4 h-4 mr-1" />
-                    Commit Asset
+                    Save Document
                   </>
                 )}
               </button>

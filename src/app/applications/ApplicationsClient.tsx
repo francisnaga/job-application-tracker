@@ -22,6 +22,7 @@ import ApplicationFormModal from '@/components/applications/ApplicationFormModal
 import { createBrowserClient } from '@supabase/ssr';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
+import { toast } from 'sonner';
 
 interface ApplicationsClientProps {
   initialData: any[];
@@ -46,14 +47,19 @@ export default function ApplicationsClient({ initialData }: ApplicationsClientPr
   const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this application?')) return;
     
-    const supabase = createBrowserClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-    );
-    
-    const { error } = await supabase.from('applications').delete().eq('id', id);
-    if (!error) {
+    try {
+      const supabase = createBrowserClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+      );
+      
+      const { error } = await supabase.from('applications').delete().eq('id', id);
+      if (error) throw error;
+      
+      toast.success('Application deleted.');
       router.refresh();
+    } catch (e) {
+      toast.error('Failed to delete application.');
     }
   };
 
@@ -169,8 +175,8 @@ export default function ApplicationsClient({ initialData }: ApplicationsClientPr
               <div className="w-20 h-20 bg-secondary/40 rounded-3xl flex items-center justify-center mb-6">
                 <Search className="h-8 w-8 text-muted-foreground/30" />
               </div>
-              <h3 className="text-2xl font-bold text-foreground tracking-tight">No traces found.</h3>
-              <p className="text-muted-foreground font-medium max-w-xs mt-2 text-sm">Adjust your filters or log a new application to populate your workspace.</p>
+              <h3 className="text-2xl font-bold text-foreground tracking-tight">No applications found.</h3>
+              <p className="text-muted-foreground font-medium max-w-xs mt-2 text-sm">Adjust your filters or add a new job application.</p>
             </div>
           ) : viewMode === 'grid' ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

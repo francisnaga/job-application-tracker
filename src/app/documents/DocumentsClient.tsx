@@ -24,6 +24,7 @@ import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AppLayout } from '@/components/layout/AppLayout';
 import DocumentFormModal from '@/components/documents/DocumentFormModal';
+import { toast } from 'sonner';
 
 interface DocumentsClientProps {
   initialData: any[];
@@ -41,16 +42,21 @@ export default function DocumentsClient({ initialData }: DocumentsClientProps) {
   );
 
   const handleDelete = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this strategic asset?')) return;
+    if (!confirm('Are you sure you want to delete this document?')) return;
     
-    const supabase = createBrowserClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-    );
-    
-    const { error } = await supabase.from('documents').delete().eq('id', id);
-    if (!error) {
+    try {
+      const supabase = createBrowserClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+      );
+      
+      const { error } = await supabase.from('documents').delete().eq('id', id);
+      if (error) throw error;
+      
+      toast.success('Document deleted.');
       router.refresh();
+    } catch (e) {
+      toast.error('Failed to delete document.');
     }
   };
 
@@ -74,12 +80,12 @@ export default function DocumentsClient({ initialData }: DocumentsClientProps) {
         <header className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
            <div className="space-y-4">
               <h1 className="text-5xl font-bold tracking-tighter text-foreground font-display leading-tight">
-                Strategic <br />
-                <span className="text-primary italic">Assets</span>
+                Your <br />
+                <span className="text-primary italic">Documents</span>
               </h1>
               <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.3em] flex items-center gap-3">
                 <ShieldCheck className="w-4 h-4 text-primary" />
-                Vanguard Asset Repository Active
+                Manage your career files
               </p>
            </div>
 
@@ -92,7 +98,7 @@ export default function DocumentsClient({ initialData }: DocumentsClientProps) {
                 className="flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-primary/90 transition-all shadow-2xl shadow-primary/30 active:scale-95"
               >
                 <Plus className="w-4 h-4" />
-                Archive New Asset
+                Add Document
               </button>
            </div>
         </header>
@@ -103,7 +109,7 @@ export default function DocumentsClient({ initialData }: DocumentsClientProps) {
               <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-muted-foreground" />
               <input
                 type="text"
-                placeholder="Search Assets..."
+                placeholder="Search Documents..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-14 pr-6 py-4 bg-secondary/50 border-none rounded-2xl text-sm font-bold text-foreground focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-muted-foreground/50"
@@ -112,7 +118,7 @@ export default function DocumentsClient({ initialData }: DocumentsClientProps) {
            
            <div className="flex items-center gap-3 px-6 text-[10px] font-black text-muted-foreground uppercase tracking-widest">
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              {filteredDocs.length} Operational Units
+              {filteredDocs.length} Documents
            </div>
         </section>
 
@@ -188,13 +194,13 @@ export default function DocumentsClient({ initialData }: DocumentsClientProps) {
                 <div className="w-20 h-20 bg-background border border-border rounded-3xl flex items-center justify-center mb-6 shadow-sm">
                    <Layers className="w-8 h-8 text-muted-foreground opacity-20" />
                 </div>
-                <h3 className="text-2xl font-bold text-foreground tracking-tight">No strategic assets archived.</h3>
-                <p className="text-sm font-medium text-muted-foreground max-w-sm mt-2 italic leading-relaxed">Your professional portfolio is the vanguard of your search strategy. Archive resumes, cover letters, and project links below.</p>
+                <h3 className="text-2xl font-bold text-foreground tracking-tight">No documents added.</h3>
+                <p className="text-sm font-medium text-muted-foreground max-w-sm mt-2 italic leading-relaxed">Keep your resumes, cover letters, and portfolios organized in one place.</p>
                 <button 
                   onClick={() => setIsModalOpen(true)}
                   className="mt-8 px-10 py-5 bg-card border border-border rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] text-foreground hover:bg-primary hover:text-primary-foreground transition-all active:scale-95"
                 >
-                  Initiate First Log
+                  Add Document
                 </button>
              </div>
            )}

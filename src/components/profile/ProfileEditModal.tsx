@@ -82,10 +82,10 @@ export default function ProfileEditModal({ isOpen, onClose, initialData }: Profi
           >
             <div className="flex items-center justify-between p-8 border-b border-border/50">
               <div className="space-y-1">
-                <h2 className="text-2xl font-bold tracking-tight text-foreground font-display">Refine Strategic Identity</h2>
+                <h2 className="text-2xl font-bold tracking-tight text-foreground font-display">Edit Profile</h2>
                 <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest flex items-center gap-2">
                    <ShieldCheck className="w-3 h-3 text-primary" />
-                   Professional Metadata Synchronization
+                   Update your personal details
                 </p>
               </div>
               <button 
@@ -154,7 +154,7 @@ export default function ProfileEditModal({ isOpen, onClose, initialData }: Profi
                 </section>
 
                 <div className="space-y-2">
-                  <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Identity Summary (Bio)</label>
+                  <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Bio</label>
                   <div className="relative">
                     <div className="absolute top-4 left-4 pointer-events-none text-muted-foreground/50">
                       <MessageSquare className="h-5 w-5" />
@@ -185,7 +185,7 @@ export default function ProfileEditModal({ isOpen, onClose, initialData }: Profi
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Portfolio Hub</label>
+                    <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Portfolio URL</label>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-muted-foreground/50">
                         <Globe className="h-5 w-5" />
@@ -209,7 +209,7 @@ export default function ProfileEditModal({ isOpen, onClose, initialData }: Profi
                 onClick={onClose}
                 className="hidden sm:block px-8 py-4 text-xs font-black uppercase tracking-widest text-muted-foreground hover:text-foreground transition-all"
               >
-                Abort Log
+                Cancel
               </button>
               <button
                 type="submit"
@@ -217,10 +217,10 @@ export default function ProfileEditModal({ isOpen, onClose, initialData }: Profi
                 disabled={isLoading}
                 className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-12 py-4 bg-primary text-primary-foreground rounded-2xl text-sm font-black uppercase tracking-widest shadow-premium shadow-primary/20 hover:bg-primary/90 transition-all active:scale-[0.98] disabled:opacity-70"
               >
-                {isLoading ? "Synchronizing Identity..." : (
+                {isLoading ? "Saving Profile..." : (
                   <>
                     <Save className="w-4 h-4 mr-1" />
-                    Commit Refinement
+                    Save Profile
                   </>
                 )}
               </button>

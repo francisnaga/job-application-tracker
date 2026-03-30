@@ -21,8 +21,8 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Job Application Tracker | Premium",
-  description: "A clean, modern productivity tool to track your job applications",
+  title: "Vantage | Elite Career Strategy",
+  description: "Your strategic arsenal for comprehensive job application tracking and professional transition management.",
 };
 
 export default function RootLayout({

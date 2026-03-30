@@ -48,17 +48,17 @@ export default function LandingPage() {
             <div>
               <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-10 backdrop-blur-md">
                 <Sparkles className="w-4 h-4 text-primary" />
-                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-primary">Strategic Career Studio</span>
+                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-primary">Smart Job Tracker</span>
               </div>
               
               <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-[1.05] mb-10 font-display text-foreground">
                 Landing your dream <br />
                 <span className="text-primary italic">role</span> is now a <br />
-                <span className="text-gradient">calculated strategy.</span>
+                <span className="text-gradient">smart strategy.</span>
               </h1>
               
               <p className="text-xl md:text-2xl text-muted-foreground font-medium max-w-2xl mb-14 leading-relaxed mx-auto lg:mx-0">
-                Stop drowning in spreadsheets. Optimize your search with predictive analytics and a dashboard built for elite performance.
+                Stop drowning in spreadsheets. Focus your job search with powerful insights and a beautifully designed dashboard.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start">
@@ -71,7 +71,7 @@ export default function LandingPage() {
                       <img src={`https://i.pravatar.cc/100?u=${i+10}`} alt="user" className="w-full h-full object-cover opacity-90 grayscale hover:grayscale-0 transition-all duration-300" />
                     </div>
                   ))}
-                  <div className="pl-6 text-[10px] font-black text-muted-foreground uppercase tracking-widest">Managing 2k+ Pipelines</div>
+                  <div className="pl-6 text-[10px] font-black text-muted-foreground uppercase tracking-widest">Managing 2k+ Applications</div>
                 </div>
               </div>
             </div>
@@ -142,8 +142,8 @@ export default function LandingPage() {
              <div className="space-y-4">
                 <p className="text-6xl font-bold tracking-tighter font-display text-foreground group-hover:text-primary-foreground transition-colors">94k+</p>
                 <div className="space-y-1">
-                   <p className="font-black uppercase tracking-[0.25em] text-[10px] text-primary group-hover:text-primary-foreground/80 transition-colors">Career Transitions</p>
-                   <p className="text-sm text-muted-foreground group-hover:text-primary-foreground/50 transition-colors">Data-driven search patterns for high performance.</p>
+                   <p className="font-black uppercase tracking-[0.25em] text-[10px] text-primary group-hover:text-primary-foreground/80 transition-colors">Interviews Landed</p>
+                   <p className="text-sm text-muted-foreground group-hover:text-primary-foreground/50 transition-colors">Track your applications and land your dream job faster.</p>
                 </div>
              </div>
           </motion.div>
@@ -173,7 +173,7 @@ export default function LandingPage() {
           >
              <div className="max-w-xs space-y-6">
                 <h3 className="text-3xl font-bold tracking-tight text-foreground">Targeted Success</h3>
-                <p className="text-muted-foreground text-lg leading-relaxed">Automated follow-up reminders ensure zero opportunity loss.</p>
+                 <p className="text-muted-foreground text-lg leading-relaxed">Never miss a follow-up with built-in task reminders.</p>
              </div>
              <div className="w-32 h-32 rounded-full border-2 border-primary/20 flex items-center justify-center group-hover:scale-110 group-hover:border-primary/50 transition-all duration-700 bg-primary/5">
                 <Target className="w-12 h-12 text-primary animate-pulse shadow-glow" />
@@ -195,7 +195,7 @@ export default function LandingPage() {
             <a href="#" className="hover:text-primary hover:scale-105 transition-all">Privacy</a>
             <a href="#" className="hover:text-primary hover:scale-105 transition-all">Terms</a>
             <a href="#" className="hover:text-primary hover:scale-105 transition-all">Support</a>
-            <span className="opacity-30">© 2024 Elite Tech Corp.</span>
+            <span className="opacity-30">© 2024 Vantage</span>
           </div>
         </div>
       </footer>

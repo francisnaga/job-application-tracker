@@ -98,7 +98,7 @@ export default function ApplicationFormModal({ isOpen, onClose, initialData }: A
                 <h2 className="text-2xl font-bold tracking-tight text-foreground font-display">
                   {initialData ? 'Refine Record' : 'Log New Application'}
                 </h2>
-                <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest">Global Identification Parameters</p>
+                <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest">Application Details</p>
               </div>
               <button 
                 onClick={onClose}
@@ -113,7 +113,7 @@ export default function ApplicationFormModal({ isOpen, onClose, initialData }: A
                 
                 <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-2">
-                    <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Target Entity</label>
+                    <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Company</label>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-muted-foreground/50">
                         <Building2 className="h-5 w-5" />
@@ -130,7 +130,7 @@ export default function ApplicationFormModal({ isOpen, onClose, initialData }: A
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Deployment Role</label>
+                    <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Job Title</label>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-muted-foreground/50">
                         <Briefcase className="h-5 w-5" />
@@ -148,7 +148,7 @@ export default function ApplicationFormModal({ isOpen, onClose, initialData }: A
                 </section>
 
                 <div className="space-y-4">
-                  <label className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Pipeline Status</label>
+                  <label className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Status</label>
                   <div className="flex flex-wrap gap-2">
                     {statuses.map((status) => (
                       <button
@@ -172,7 +172,7 @@ export default function ApplicationFormModal({ isOpen, onClose, initialData }: A
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Asset Link</label>
+                  <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Job Link</label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-muted-foreground/50">
                       <LinkIcon className="h-5 w-5" />
@@ -189,7 +189,7 @@ export default function ApplicationFormModal({ isOpen, onClose, initialData }: A
 
                 <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-2">
-                    <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Initialization Date</label>
+                    <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Date Applied</label>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-muted-foreground/50">
                         <Calendar className="h-5 w-5" />
@@ -205,7 +205,7 @@ export default function ApplicationFormModal({ isOpen, onClose, initialData }: A
                   </div>
                   
                   <div className="space-y-2">
-                    <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Follow-up Milestone</label>
+                    <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Follow-up Date</label>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-muted-foreground/50">
                         <Calendar className="h-5 w-5" />
@@ -221,7 +221,7 @@ export default function ApplicationFormModal({ isOpen, onClose, initialData }: A
                 </section>
 
                 <div className="space-y-2">
-                  <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Internal Documentation</label>
+                  <label className="text-xs font-black text-muted-foreground uppercase tracking-widest ml-1">Notes</label>
                   <div className="relative">
                     <div className="absolute top-4 left-4 pointer-events-none text-muted-foreground/50">
                       <AlignLeft className="h-5 w-5" />
@@ -243,7 +243,7 @@ export default function ApplicationFormModal({ isOpen, onClose, initialData }: A
                 onClick={onClose}
                 className="hidden sm:block px-8 py-4 text-xs font-black uppercase tracking-widest text-muted-foreground hover:text-foreground transition-all"
               >
-                Discard Changes
+                Cancel
               </button>
               <button
                 type="submit"
@@ -254,7 +254,7 @@ export default function ApplicationFormModal({ isOpen, onClose, initialData }: A
                 {isLoading ? "Saving..." : (
                   <>
                     <Save className="w-4 h-4 mr-1" />
-                    Commit Records
+                    Save Application
                   </>
                 )}
               </button>

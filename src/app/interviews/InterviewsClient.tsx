@@ -9,6 +9,7 @@ import { format } from 'date-fns';
 import InterviewRoundFormModal from '@/components/interviews/InterviewRoundFormModal';
 import { createBrowserClient } from '@supabase/ssr';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 interface InterviewsClientProps {
   user: any;
@@ -29,16 +30,21 @@ export default function InterviewsClient({ user, initialRounds, applications }: 
   );
 
   const handleDelete = async (id: string) => {
-    if (!confirm('Purge this execution record? Performance data will be lost.')) return;
+    if (!confirm('Are you sure you want to delete this interview?')) return;
     
-    const supabase = createBrowserClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-    );
-    
-    const { error } = await supabase.from('interview_rounds').delete().eq('id', id);
-    if (!error) {
+    try {
+      const supabase = createBrowserClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+      );
+      
+      const { error } = await supabase.from('interview_rounds').delete().eq('id', id);
+      if (error) throw error;
+      
+      toast.success('Interview deleted.');
       router.refresh();
+    } catch (e) {
+      toast.error('Failed to delete interview.');
     }
   };
 
@@ -64,12 +70,12 @@ export default function InterviewsClient({ user, initialRounds, applications }: 
         <header className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
           <div className="space-y-4">
             <h1 className="text-5xl font-bold tracking-tighter text-foreground font-display leading-tight">
-              Interview <br />
-              <span className="text-primary italic">Execution</span>
+              Your <br />
+              <span className="text-primary italic">Interviews</span>
             </h1>
             <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.3em] flex items-center gap-3">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              Technical & Behavioral Performance Tracking
+              Manage your interview rounds
             </p>
           </div>
 
@@ -78,7 +84,7 @@ export default function InterviewsClient({ user, initialRounds, applications }: 
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
                 <input 
                   type="text" 
-                  placeholder="Scan Rounds..." 
+                  placeholder="Search Interviews..." 
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="bg-secondary/10 border-white/5 rounded-2xl pl-12 pr-6 py-4 text-sm font-bold focus:ring-2 focus:ring-primary/20 transition-all outline-none w-64 md:w-80 backdrop-blur-xl text-foreground placeholder:text-muted-foreground"
@@ -126,7 +132,7 @@ export default function InterviewsClient({ user, initialRounds, applications }: 
                          </div>
                          <div className="flex items-center gap-2">
                            <MessageSquare className="w-3.5 h-3.5 text-muted-foreground" />
-                           <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">{round.feedback ? 'Refined Log' : 'Missing Feedback'}</span>
+                           <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">{round.feedback ? 'Has Notes' : 'No Notes'}</span>
                          </div>
                       </div>
                     </div>
@@ -137,7 +143,7 @@ export default function InterviewsClient({ user, initialRounds, applications }: 
                        onClick={() => toggleFeed(round.id)}
                        className="px-8 py-4 bg-secondary/50 border border-border rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-primary hover:text-primary-foreground transition-all group/btn"
                      >
-                       {expandedFeedId === round.id ? 'Close Intel' : 'Execution Feed'} <ChevronDown className={cn("w-3 h-3 inline ml-1 transition-transform", expandedFeedId === round.id && "rotate-180")} />
+                       {expandedFeedId === round.id ? 'Hide Feedback' : 'View Feedback'} <ChevronDown className={cn("w-3 h-3 inline ml-1 transition-transform", expandedFeedId === round.id && "rotate-180")} />
                      </button>
                      <div className="flex items-center gap-2">
                         <button 
@@ -167,9 +173,9 @@ export default function InterviewsClient({ user, initialRounds, applications }: 
                     >
                       <div className="pt-10 mt-10 border-t border-border">
                         <div className="p-8 bg-secondary/50 rounded-[2rem] border border-border space-y-4">
-                           <p className="text-[9px] font-black uppercase tracking-widest text-primary">Performance Reflections</p>
+                           <p className="text-[9px] font-black uppercase tracking-widest text-primary">Interview Feedback</p>
                            <p className="text-sm font-medium text-muted-foreground leading-relaxed italic">
-                             {round.feedback || 'Zero performance signals archived for this execution round. Initiate feedback logging to refine competitive strategy.'}
+                             {round.feedback || 'No notes added for this interview yet.'}
                            </p>
                         </div>
                       </div>
@@ -187,14 +193,14 @@ export default function InterviewsClient({ user, initialRounds, applications }: 
                  <ShieldCheck className="w-10 h-10 text-muted-foreground" />
                </div>
                <div className="space-y-3">
-                 <p className="text-xl font-bold uppercase tracking-[0.3em] text-foreground">Zero Signals</p>
-                 <p className="text-sm font-medium text-muted-foreground max-w-[300px] leading-relaxed italic">No active engagement sequences detected. Progress through your pipeline to trigger high-frequency execution rounds.</p>
+                 <p className="text-xl font-bold uppercase tracking-[0.3em] text-foreground">No Interviews</p>
+                 <p className="text-sm font-medium text-muted-foreground max-w-[300px] leading-relaxed italic">You haven't logged any interviews yet. Add your first interview to track your progress.</p>
                </div>
                <button 
                  onClick={() => setIsAddModalOpen(true)}
                  className="px-8 py-4 bg-primary/10 text-primary border border-primary/20 rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-primary hover:text-white transition-all"
                >
-                 Log Execution
+                 Add Interview
                </button>
             </div>
           )}

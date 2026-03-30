@@ -9,6 +9,7 @@ import { format } from 'date-fns';
 import ContactFormModal from '@/components/networking/ContactFormModal';
 import { createBrowserClient } from '@supabase/ssr';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 interface NetworkingClientProps {
   user: any;
@@ -28,16 +29,21 @@ export default function NetworkingClient({ user, contacts }: NetworkingClientPro
   );
 
   const handleDelete = async (id: string) => {
-    if (!confirm('Abort this alliance? Signal will be terminated permanently.')) return;
+    if (!confirm('Are you sure you want to delete this contact?')) return;
     
-    const supabase = createBrowserClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-    );
-    
-    const { error } = await supabase.from('contacts').delete().eq('id', id);
-    if (!error) {
+    try {
+      const supabase = createBrowserClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+      );
+      
+      const { error } = await supabase.from('contacts').delete().eq('id', id);
+      if (error) throw error;
+      
+      toast.success('Contact deleted.');
       router.refresh();
+    } catch (e) {
+      toast.error('Failed to delete contact.');
     }
   };
 
@@ -58,14 +64,14 @@ export default function NetworkingClient({ user, contacts }: NetworkingClientPro
         {/* Elite Header */}
         <header className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
           <div className="space-y-4">
-            <h1 className="text-5xl font-bold tracking-tighter text-foreground font-display leading-tight">
-              Network <br />
-              <span className="text-primary italic">Intelligence</span>
-            </h1>
-            <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.3em] flex items-center gap-3">
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              Strategic Referral Management
-            </p>
+              <h1 className="text-5xl font-bold tracking-tighter text-foreground font-display leading-tight">
+                Your <br />
+                <span className="text-primary italic">Network</span>
+              </h1>
+              <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.3em] flex items-center gap-3">
+                <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                Manage your connections
+              </p>
           </div>
 
           <div className="flex items-center gap-4">
@@ -73,7 +79,7 @@ export default function NetworkingClient({ user, contacts }: NetworkingClientPro
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
                 <input 
                   type="text" 
-                  placeholder="Analyze Field..." 
+                  placeholder="Search Network..." 
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="bg-secondary/10 border-white/5 rounded-2xl pl-12 pr-6 py-4 text-sm font-bold focus:ring-2 focus:ring-primary/20 transition-all outline-none w-64 md:w-80 backdrop-blur-xl text-foreground placeholder:text-muted-foreground"
@@ -125,7 +131,7 @@ export default function NetworkingClient({ user, contacts }: NetworkingClientPro
                   <div>
                     <h3 className="text-xl font-bold text-foreground tracking-tight group-hover:text-primary transition-colors">{contact.name}</h3>
                     <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest mt-2">
-                       {contact.role || 'Strategic Asset'} @ <span className="text-foreground">{contact.company_name || 'Autonomous'}</span>
+                       {contact.role || 'Connection'} @ <span className="text-foreground">{contact.company_name || 'N/A'}</span>
                     </p>
                   </div>
 
@@ -147,7 +153,7 @@ export default function NetworkingClient({ user, contacts }: NetworkingClientPro
                    <div className="flex items-center gap-2">
                      <Calendar className="w-3.5 h-3.5 text-muted-foreground" />
                      <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest leading-none mt-0.5">
-                       {contact.last_contact_date ? `Last Signal: ${format(new Date(contact.last_contact_date), 'MMM d')}` : 'Offline'}
+                       {contact.last_contact_date ? `Contacted: ${format(new Date(contact.last_contact_date), 'MMM d')}` : 'No date'}
                      </span>
                    </div>
                    <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-all opacity-0 group-hover:opacity-100 group-hover:translate-x-1" />
@@ -163,14 +169,14 @@ export default function NetworkingClient({ user, contacts }: NetworkingClientPro
                  <Users className="w-10 h-10 text-muted-foreground" />
                </div>
                <div className="space-y-3">
-                 <p className="text-xl font-bold uppercase tracking-[0.3em] text-foreground">Aura Offline</p>
-                 <p className="text-sm font-medium text-muted-foreground max-w-[300px] leading-relaxed italic">Expand your field of influence. Strategic connections are the fuel for modern career velocity.</p>
+                 <p className="text-xl font-bold uppercase tracking-[0.3em] text-foreground">No Contacts</p>
+                 <p className="text-sm font-medium text-muted-foreground max-w-[300px] leading-relaxed italic">Keep track of recruiters, engineers, and connections to boost your career.</p>
                </div>
                <button 
                  onClick={() => setIsAddModalOpen(true)}
                  className="px-8 py-4 bg-primary/10 text-primary border border-primary/20 rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-primary hover:text-white transition-all"
                >
-                 Initiate Connection
+                 Add Contact
                </button>
             </div>
           )}

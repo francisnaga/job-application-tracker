@@ -187,10 +187,10 @@ export default function DashboardClient({ user, applications, profile, documentC
           >
             <div className="p-10 pb-6 flex items-center justify-between border-b border-border">
               <div className="space-y-1">
-                <h3 className="text-xl font-bold text-foreground tracking-tight">Activity Stream</h3>
-                <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">Real-time Movement</p>
+                <h3 className="text-xl font-bold text-foreground tracking-tight">Recent Activity</h3>
+                <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">Latest Updates</p>
               </div>
-              <Link href="/applications" className="text-[10px] font-black text-primary group-hover:text-primary-foreground/80 uppercase tracking-widest bg-primary/5 px-4 py-2 rounded-xl border border-border hover:bg-primary hover:text-primary-foreground transition-all">Hub View</Link>
+              <Link href="/applications" className="text-[10px] font-black text-primary group-hover:text-primary-foreground/80 uppercase tracking-widest bg-primary/5 px-4 py-2 rounded-xl border border-border hover:bg-primary hover:text-primary-foreground transition-all">View All</Link>
             </div>
             <div className="flex-1 overflow-y-auto p-6 space-y-2 no-scrollbar">
               {applications.slice(0, 5).map((app) => (
@@ -283,7 +283,7 @@ export default function DashboardClient({ user, applications, profile, documentC
                 </div>
                 <div>
                   <p className="text-5xl font-bold text-foreground font-display tracking-tighter">{documentCount}</p>
-                  <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest mt-3">Strategic Assets</p>
+                  <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest mt-3">Your Documents</p>
                 </div>
               </motion.div>
             </Link>
@@ -298,8 +298,8 @@ export default function DashboardClient({ user, applications, profile, documentC
               className="md:col-span-12 surface p-14 bg-primary text-primary-foreground flex flex-col md:flex-row items-center justify-between gap-12 border-none shadow-3xl shadow-primary/20 mt-8"
             >
                <div className="space-y-5 max-w-xl text-center md:text-left">
-                  <h4 className="text-4xl font-bold tracking-tighter leading-none text-primary-foreground">Your next legacy begins now.</h4>
-                  <p className="text-primary-foreground/80 font-medium text-xl leading-relaxed">Organize your search with professional discipline. Log your first application to unlock strategic insights.</p>
+                  <h4 className="text-4xl font-bold tracking-tighter leading-none text-primary-foreground">Your next career move starts here.</h4>
+                  <p className="text-primary-foreground/80 font-medium text-xl leading-relaxed">Organize your search simply. Log your first application to see your activity.</p>
                </div>
                <Link href="/applications" className="px-12 py-6 bg-primary-foreground text-primary rounded-2xl text-xl font-bold shadow-2xl hover:scale-105 hover:bg-white transition-all active:scale-95 whitespace-nowrap">
                  Log First Role
