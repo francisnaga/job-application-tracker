@@ -51,7 +51,7 @@ export default function ProfileEditModal({ isOpen, onClose, initialData }: Profi
       onClose();
       router.refresh();
     } catch (error) {
-      console.error('Error updating identity:', error);
+      console.error('Error updating profile:', error);
       toast.error('Failed to update profile. Please try again.');
     } finally {
       setIsLoading(false);

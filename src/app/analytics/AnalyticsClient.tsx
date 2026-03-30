@@ -117,7 +117,7 @@ export default function AnalyticsClient({ applications }: AnalyticsClientProps) 
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={last6Months}>
                 <defs>
-                  <linearGradient id="velocityGrad" x1="0" y1="0" x2="0" y2="1">
+                  <linearGradient id="trendGrad" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%" stopColor="#2563eb" stopOpacity={0.2}/>
                     <stop offset="95%" stopColor="#2563eb" stopOpacity={0}/>
                   </linearGradient>
@@ -143,7 +143,7 @@ export default function AnalyticsClient({ applications }: AnalyticsClientProps) 
                 <Area 
                   type="monotone" 
                   dataKey="count" 
-                  fill="url(#velocityGrad)" 
+                  fill="url(#trendGrad)" 
                   stroke="#2563eb" 
                   strokeWidth={4} 
                   dot={{ r: 4, fill: '#2563eb', strokeWidth: 2, stroke: '#fff' }}

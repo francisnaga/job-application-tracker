@@ -96,7 +96,7 @@ export default function LandingPage() {
              >
                 <img 
                    src="/images/landing-hero.png" 
-                   alt="Elite Career Dashboard Visual" 
+                   alt="Vantage Dashboard Visual" 
                    className="w-full h-auto rounded-[2.3rem] transition-transform duration-700 pointer-events-none block shadow-2xl shadow-black/20 dark:shadow-black"
                 />
              </motion.div>

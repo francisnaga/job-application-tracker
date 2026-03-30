@@ -43,7 +43,7 @@ export default function ProfileClient({ user, profile, appCount }: ProfileClient
     <AppLayout>
       <div className="space-y-12 pb-20 pt-4 max-w-5xl mx-auto">
         
-        {/* Elite Header */}
+        {/* Vantage Header */}
         <header className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
           <div className="space-y-4">
             <h1 className="text-5xl font-bold tracking-tighter text-foreground font-display leading-tight">
@@ -67,7 +67,7 @@ export default function ProfileClient({ user, profile, appCount }: ProfileClient
           </div>
         </header>
 
-        {/* Identity Grid */}
+        {/* Profile Details Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           
           {/* User Core Card */}

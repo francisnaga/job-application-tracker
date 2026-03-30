@@ -176,7 +176,7 @@ export default function InterviewRoundFormModal({ isOpen, onClose, applications,
                       value={formData.feedback}
                       onChange={(e) => setFormData({ ...formData, feedback: e.target.value })}
                       className="block w-full pl-12 pr-4 py-4 bg-secondary/50 border-none rounded-2xl text-sm font-bold text-foreground focus:ring-2 focus:ring-primary/20 transition-all resize-none h-40 placeholder:text-muted-foreground"
-                      placeholder="Add performance notes, signals, or behavioral reflections..."
+                      placeholder="Add performance notes, outcome details, or behavioral reflections..."
                     />
                   </div>
                 </div>
