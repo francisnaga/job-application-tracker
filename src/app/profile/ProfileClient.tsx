@@ -120,7 +120,7 @@ export default function ProfileClient({ user, profile, appCount }: ProfileClient
               </motion.div>
             ))}
 
-            {/* Strategic Summary Box */}
+            {/* Profile Summary Box */}
             <motion.div 
                initial={{ opacity: 0, y: 20 }}
                animate={{ opacity: 1, y: 0 }}

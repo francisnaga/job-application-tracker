@@ -49,28 +49,23 @@ export function TopNav() {
         </div>
       </div>
       
-      <div className="flex items-center gap-2">
-        {/* Minimal Actions */}
-        <div className="flex items-center gap-1.5">
+      <div className="flex items-center gap-3">
+        {/* Unified Action Group */}
+        <div className="flex items-center gap-1 p-1 bg-secondary/30 rounded-2xl border border-border/5">
           <ThemeToggle />
           
-          <button className="relative w-10 h-10 flex items-center justify-center rounded-xl bg-secondary/50 text-muted-foreground hover:text-foreground transition-all hover:bg-secondary">
-            <Bell className="w-4.5 h-4.5" />
-            <span className="absolute top-2.5 right-2.5 w-1.5 h-1.5 bg-primary rounded-full shadow-lg shadow-primary/40 ring-2 ring-background" />
+          <button className="relative w-9 h-9 flex items-center justify-center rounded-xl text-muted-foreground hover:text-foreground transition-all hover:bg-secondary/50">
+            <Bell className="w-4 h-4" />
+            <span className="absolute top-2.5 right-2.5 w-1.5 h-1.5 bg-primary rounded-full ring-2 ring-background" />
           </button>
+
+          <Link 
+            href="/profile"
+            className="w-9 h-9 flex items-center justify-center rounded-xl bg-background border border-border/50 shadow-sm hover:scale-105 transition-all group"
+          >
+            <User className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+          </Link>
         </div>
-
-        <div className="w-[1px] h-4 bg-border hidden sm:block mx-1" />
-
-        <Link 
-          href="/profile"
-          className="flex items-center gap-3 px-1.5 py-1.5 rounded-2xl bg-secondary/30 border border-border/5 hover:bg-secondary/50 transition-all group"
-        >
-          <div className="w-8 h-8 rounded-xl bg-background border border-border/50 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform duration-300">
-            <User className="w-4.5 h-4.5 text-muted-foreground" />
-          </div>
-          <span className="text-[10px] font-black text-foreground uppercase tracking-widest px-1 hidden sm:inline">My Profile</span>
-        </Link>
       </div>
     </header>
   );

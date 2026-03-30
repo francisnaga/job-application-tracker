@@ -185,19 +185,28 @@ export default function LandingPage() {
       </main>
 
       {/* Footer */}
-      <footer className="relative z-10 border-t border-border/10 px-8 py-24 bg-background/50 backdrop-blur-xl mt-32">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
-          <div className="flex items-center gap-4 group cursor-pointer">
-             <div className="w-10 h-10 bg-foreground text-background rounded-xl flex items-center justify-center shadow-lg group-hover:rotate-12 transition-transform">
-               <Compass className="w-5 h-5" />
+      <footer className="relative z-10 border-t border-border/10 px-8 py-20 bg-background/50 backdrop-blur-xl mt-32">
+        <div className="max-w-7xl mx-auto flex flex-col items-center gap-12">
+          <div className="flex flex-col items-center gap-6 group">
+             <div className="w-12 h-12 bg-foreground text-background rounded-2xl flex items-center justify-center shadow-2xl group-hover:rotate-12 transition-transform duration-500">
+               <Compass className="w-6 h-6" />
              </div>
-             <span className="font-bold tracking-tighter text-xl uppercase italic text-foreground">Vantage by Naga. <span className="text-muted-foreground font-medium text-sm not-italic ml-2">Build your legacy.</span></span>
+             <div className="text-center space-y-2">
+               <h2 className="font-bold tracking-tighter text-2xl uppercase italic text-foreground">Vantage</h2>
+               <p className="text-muted-foreground font-medium text-[10px] tracking-[0.3em] uppercase">By Naga • Build your legacy.</p>
+             </div>
           </div>
-          <div className="flex items-center gap-10 text-[10px] font-black text-muted-foreground uppercase tracking-[0.3em]">
-            <a href="#" className="hover:text-primary hover:scale-105 transition-all">Privacy</a>
-            <a href="#" className="hover:text-primary hover:scale-105 transition-all">Terms</a>
-            <a href="#" className="hover:text-primary hover:scale-105 transition-all">Support</a>
-            <span className="opacity-30">© 2024 Vantage</span>
+          
+          <div className="flex flex-wrap justify-center items-center gap-x-10 gap-y-6 text-[10px] font-black text-muted-foreground uppercase tracking-[0.3em]">
+            <a href="#" className="hover:text-primary transition-all">Privacy</a>
+            <a href="#" className="hover:text-primary transition-all">Terms</a>
+            <a href="#" className="hover:text-primary transition-all">Support</a>
+          </div>
+
+          <div className="pt-8 border-t border-border/10 w-full text-center">
+             <p className="text-[9px] font-bold text-muted-foreground/40 uppercase tracking-[0.4em]">
+               © 2024 Vantage • Handcrafted with love
+             </p>
           </div>
         </div>
       </footer>

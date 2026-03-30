@@ -10,7 +10,7 @@ export default async function DocumentsPage() {
     redirect('/login');
   }
 
-  // Fetch all documents (Strategic Assets)
+  // Fetch all documents
   const { data: documents } = await supabase
     .from('documents')
     .select('*')

@@ -22,7 +22,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: "Vantage | Elite Career Strategy",
-  description: "Your strategic arsenal for comprehensive job application tracking and professional transition management.",
+  description: "Your comprehensive dashboard for job application tracking and career management.",
 };
 
 export default function RootLayout({
