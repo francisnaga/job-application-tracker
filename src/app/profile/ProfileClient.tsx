@@ -20,6 +20,7 @@ import {
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import ProfileEditModal from '@/components/profile/ProfileEditModal';
 
 interface ProfileClientProps {
   user: any;
@@ -29,6 +30,7 @@ interface ProfileClientProps {
 
 export default function ProfileClient({ user, profile, appCount }: ProfileClientProps) {
   const [isEditing, setIsEditing] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   // Stats for the Bento Hub
@@ -57,11 +59,11 @@ export default function ProfileClient({ user, profile, appCount }: ProfileClient
 
           <div className="flex items-center gap-4">
              <button 
-               onClick={() => setIsEditing(!isEditing)}
-               className="flex items-center gap-2 px-8 py-4 bg-primary text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-primary/90 transition-all shadow-2xl shadow-primary/30 active:scale-95"
+               onClick={() => setIsModalOpen(true)}
+               className="flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-primary/90 transition-all shadow-2xl shadow-primary/30 active:scale-95"
              >
-                {isEditing ? <Save className="w-4 h-4" /> : <User className="w-4 h-4" />}
-                {isEditing ? 'Commit Changes' : 'Refine Identity'}
+                <User className="w-4 h-4" />
+                Refine Identity
              </button>
           </div>
         </header>
@@ -185,6 +187,12 @@ export default function ProfileClient({ user, profile, appCount }: ProfileClient
         </div>
 
       </div>
+
+      <ProfileEditModal 
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        initialData={profile}
+      />
     </AppLayout>
   );
 }

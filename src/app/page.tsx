@@ -15,22 +15,22 @@ export default function LandingPage() {
       </div>
 
       {/* Navigation */}
-      <nav className="relative z-50 flex items-center justify-between px-8 py-8 max-w-7xl mx-auto backdrop-blur-sm">
-        <div className="flex items-center gap-3.5 group cursor-pointer">
-          <div className="w-10 h-10 bg-primary text-primary-foreground rounded-xl flex items-center justify-center shadow-lg shadow-primary/25 group-hover:rotate-6 group-hover:scale-110 transition-all duration-500">
-            <Compass className="w-5.5 h-5.5" />
+      <nav className="relative z-50 flex items-center justify-between px-6 md:px-8 py-6 md:py-8 max-w-7xl mx-auto backdrop-blur-sm">
+        <div className="flex items-center gap-3 md:gap-3.5 group cursor-pointer shrink-0">
+          <div className="w-9 h-9 md:w-10 md:h-10 bg-primary text-primary-foreground rounded-xl flex items-center justify-center shadow-lg shadow-primary/25 group-hover:rotate-6 group-hover:scale-110 transition-all duration-500">
+            <Compass className="w-5 md:w-5.5 h-5 md:h-5.5" />
           </div>
           <div className="flex flex-col -gap-1">
-            <span className="text-2xl font-bold tracking-tighter font-display uppercase italic text-foreground">Vantage</span>
-            <span className="text-[8px] font-black uppercase tracking-[0.2em] text-primary/60 ml-0.5">By Naga</span>
+            <span className="text-xl md:text-2xl font-bold tracking-tighter font-display uppercase italic text-foreground">Vantage</span>
+            <span className="text-[7px] md:text-[8px] font-black uppercase tracking-[0.2em] text-primary/60 ml-0.5">By Naga</span>
           </div>
         </div>
-        <div className="flex items-center gap-8">
-          <Link href="/login" className="text-sm font-bold text-muted-foreground hover:text-foreground transition-colors uppercase tracking-widest px-2">
+        <div className="flex items-center gap-4 md:gap-8">
+          <Link href="/login" className="text-[10px] md:text-sm font-bold text-muted-foreground hover:text-foreground transition-colors uppercase tracking-[0.2em] px-1 md:px-2 whitespace-nowrap">
             Sign In
           </Link>
-          <Link href="/login" className="px-8 py-3 bg-foreground text-background rounded-full text-sm font-black uppercase tracking-widest hover:scale-105 transition-all shadow-2xl shadow-foreground/20 active:scale-95 group flex items-center gap-2">
-            Get Started <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          <Link href="/login" className="px-5 md:px-8 py-2.5 md:py-3 bg-foreground text-background rounded-full text-[10px] md:text-sm font-black uppercase tracking-[0.2em] hover:scale-105 transition-all shadow-xl shadow-foreground/10 active:scale-95 group flex items-center gap-2 whitespace-nowrap">
+            Get Started <ArrowRight className="w-3.5 md:w-4 h-3.5 md:h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
       </nav>

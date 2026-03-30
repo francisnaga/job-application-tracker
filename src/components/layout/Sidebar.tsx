@@ -13,6 +13,7 @@ const navigation = [
   { name: 'Applications', href: '/applications', icon: Briefcase },
   { name: 'Networking', href: '/networking', icon: Users },
   { name: 'Interviews', href: '/interviews', icon: Calendar },
+  { name: 'Documents', href: '/documents', icon: FileText },
   { name: 'Analytics', href: '/analytics', icon: TrendingUp },
 ];
 
