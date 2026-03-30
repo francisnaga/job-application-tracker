@@ -15,5 +15,21 @@ export default async function DashboardPage() {
     .select('*')
     .order('applied_date', { ascending: false });
 
-  return <DashboardClient user={user} applications={applications || []} />;
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('*')
+    .eq('id', user.id)
+    .single();
+
+  const { count: documentCount } = await supabase
+    .from('documents')
+    .select('*', { count: 'exact', head: true })
+    .eq('user_id', user.id);
+
+  return <DashboardClient 
+           user={user} 
+           applications={applications || []} 
+           profile={profile} 
+           documentCount={documentCount || 0} 
+         />;
 }

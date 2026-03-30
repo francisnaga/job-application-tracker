@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import { createBrowserClient } from '@supabase/ssr';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
+import { toast } from 'sonner';
 
 interface DocumentFormModalProps {
   isOpen: boolean;
@@ -41,18 +42,20 @@ export default function DocumentFormModal({ isOpen, onClose, initialData }: Docu
           .update(formData)
           .eq('id', initialData.id);
         if (error) throw error;
+        toast.success("Strategic asset refined successfully.");
       } else {
         const { error } = await supabase
           .from('documents')
           .insert([{ ...formData, user_id: user.id }]);
         if (error) throw error;
+        toast.success("Strategic asset successfully archived.");
       }
       
       onClose();
       router.refresh();
     } catch (error) {
       console.error('Error saving document:', error);
-      alert('Failed to archive asset. Please check your connection or schema.');
+      toast.error('Failed to archive asset. Please check your connection or schema.');
     } finally {
       setIsLoading(false);
     }

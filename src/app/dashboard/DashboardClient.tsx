@@ -1,7 +1,7 @@
 'use client';
 
 import { AppLayout } from '@/components/layout/AppLayout';
-import { Briefcase, CalendarCheck, Medal, XCircle, TrendingUp, ArrowUpRight, Plus, BarChart3, ChevronRight, Compass } from 'lucide-react';
+import { Briefcase, CalendarCheck, Medal, XCircle, TrendingUp, ArrowUpRight, Plus, BarChart3, ChevronRight, Compass, ShieldCheck, Layers } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { format, subDays, isAfter, startOfDay, eachDayOfInterval } from 'date-fns';
@@ -17,9 +17,11 @@ import {
 interface DashboardClientProps {
   user: any;
   applications: any[];
+  profile?: any;
+  documentCount?: number;
 }
 
-export default function DashboardClient({ user, applications }: DashboardClientProps) {
+export default function DashboardClient({ user, applications, profile, documentCount = 0 }: DashboardClientProps) {
   const total = applications.length;
   const interviews = applications.filter(a => a.status === 'interview').length;
   const offers = applications.filter(a => a.status === 'offer').length;
@@ -245,6 +247,48 @@ export default function DashboardClient({ user, applications }: DashboardClientP
               </div>
             </motion.div>
           </div>
+
+          {/* Intelligence Suite Section: Profile & Documents */}
+          <div className="md:col-span-6 grid grid-cols-2 gap-8 h-full mt-4 md:mt-0">
+            <Link href="/profile">
+              <motion.div 
+                 initial={{ opacity: 0, scale: 0.95 }}
+                 animate={{ opacity: 1, scale: 1 }}
+                 transition={{ delay: 0.6 }}
+                 className="surface p-10 flex flex-col justify-between hover:bg-green-500/5 hover:border-green-500/30 transition-all border-border bg-card shadow-2xl h-full group"
+              >
+                <div className="flex justify-between items-start">
+                  <div className="w-12 h-12 rounded-2xl bg-green-500/10 flex items-center justify-center border border-green-500/20 group-hover:scale-110 transition-transform">
+                    <ShieldCheck className="w-6 h-6 text-green-500" />
+                  </div>
+                </div>
+                <div>
+                  <p className="text-2xl font-bold text-foreground tracking-tight leading-tight">
+                    {profile?.target_role ? 'Optimized' : 'Draft'}
+                  </p>
+                  <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest mt-3">Identity Status</p>
+                </div>
+              </motion.div>
+            </Link>
+
+            <Link href="/documents">
+              <motion.div 
+                 initial={{ opacity: 0, scale: 0.95 }}
+                 animate={{ opacity: 1, scale: 1 }}
+                 transition={{ delay: 0.7 }}
+                 className="surface p-10 flex flex-col justify-between hover:bg-purple-500/5 hover:border-purple-500/30 transition-all border-border bg-card shadow-2xl h-full group"
+              >
+                <div className="w-12 h-12 rounded-2xl bg-purple-500/10 flex items-center justify-center border border-purple-500/20 group-hover:scale-110 transition-transform">
+                  <Layers className="w-6 h-6 text-purple-500" />
+                </div>
+                <div>
+                  <p className="text-5xl font-bold text-foreground font-display tracking-tighter">{documentCount}</p>
+                  <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest mt-3">Strategic Assets</p>
+                </div>
+              </motion.div>
+            </Link>
+          </div>
+
 
           {/* Action Call for Zero States */}
           {applications.length === 0 && (

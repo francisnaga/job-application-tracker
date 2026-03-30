@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import { createBrowserClient } from '@supabase/ssr';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
+import { toast } from 'sonner';
 
 interface ApplicationFormModalProps {
   isOpen: boolean;
@@ -40,22 +41,32 @@ export default function ApplicationFormModal({ isOpen, onClose, initialData }: A
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
 
-    if (initialData?.id) {
-      // Update
-      await supabase
-        .from('applications')
-        .update(formData)
-        .eq('id', initialData.id);
-    } else {
-      // Insert
-      await supabase
-        .from('applications')
-        .insert([{ ...formData, user_id: user.id }]);
-    }
+    try {
+      if (initialData?.id) {
+        // Update
+        const { error } = await supabase
+          .from('applications')
+          .update(formData)
+          .eq('id', initialData.id);
+        if (error) throw error;
+        toast.success('Pipeline updated successfully.');
+      } else {
+        // Insert
+        const { error } = await supabase
+          .from('applications')
+          .insert([{ ...formData, user_id: user.id }]);
+        if (error) throw error;
+        toast.success('Strategic position logged.');
+      }
 
-    setIsLoading(false);
-    onClose();
-    router.refresh();
+      onClose();
+      router.refresh();
+    } catch (error) {
+      console.error('Error saving application:', error);
+      toast.error('Failed to commit record. Please check your connection.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const statuses = ['applied', 'interview', 'offer', 'rejected'];

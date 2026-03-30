@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import { createBrowserClient } from '@supabase/ssr';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
+import { toast } from 'sonner';
 
 interface ProfileEditModalProps {
   isOpen: boolean;
@@ -46,11 +47,12 @@ export default function ProfileEditModal({ isOpen, onClose, initialData }: Profi
       
       if (error) throw error;
       
+      toast.success("Strategic identity refined successfully.");
       onClose();
       router.refresh();
     } catch (error) {
       console.error('Error updating identity:', error);
-      alert('Failed to update strategic identity.');
+      toast.error('Failed to update strategic identity. Please check your connection.');
     } finally {
       setIsLoading(false);
     }
