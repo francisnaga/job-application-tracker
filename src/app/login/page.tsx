@@ -98,13 +98,13 @@ function LoginContent() {
               </div>
               <div className="relative flex justify-center text-xs">
                 <span className="bg-card px-4 text-muted-foreground font-black uppercase tracking-[0.2em]">
-                  Secure Access
+                  Sign in
                 </span>
               </div>
             </div>
 
             <p className="text-center text-muted-foreground text-[10px] font-bold uppercase tracking-widest leading-loose">
-              By accessing this workspace, you agree to our <br />
+              By signing in, you agree to our <br />
               <span className="text-foreground hover:underline cursor-pointer">Terms of Service</span> and <span className="text-foreground hover:underline cursor-pointer">Privacy Policy</span>.
             </p>
           </div>
@@ -120,7 +120,7 @@ function LoginContent() {
 
 export default function LoginPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center text-muted-foreground uppercase tracking-widest text-xs font-black animate-pulse">Initializing Security...</div>}>
+    <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center text-muted-foreground uppercase tracking-widest text-[10px] font-black animate-pulse">Loading...</div>}>
       <LoginContent />
     </Suspense>
   );

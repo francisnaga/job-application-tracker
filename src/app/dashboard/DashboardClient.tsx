@@ -210,7 +210,7 @@ export default function DashboardClient({ user, applications, profile, documentC
               {applications.length === 0 && (
                 <div className="flex flex-col items-center justify-center h-full text-muted-foreground py-20 grayscale opacity-40">
                   <Compass className="w-12 h-12 mb-6 animate-spin-slow" />
-                  <p className="text-[10px] font-black uppercase tracking-[0.3em] text-center max-w-[200px] leading-relaxed">System Ready. No Activity.</p>
+                  <p className="text-[10px] font-black uppercase tracking-[0.3em] text-center max-w-[200px] leading-relaxed">No activity yet. Log your first application.</p>
                 </div>
               )}
             </div>
