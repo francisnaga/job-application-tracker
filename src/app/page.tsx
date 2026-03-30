@@ -26,10 +26,10 @@ export default function LandingPage() {
           </div>
         </div>
         <div className="flex items-center gap-4 md:gap-8">
-          <Link href="/login" className="text-[10px] md:text-sm font-bold text-muted-foreground hover:text-foreground transition-colors uppercase tracking-[0.2em] px-1 md:px-2 whitespace-nowrap">
+          <Link href="/login" className="hidden md:inline text-[10px] md:text-sm font-bold text-muted-foreground hover:text-foreground transition-colors uppercase tracking-[0.2em] px-1 md:px-2 whitespace-nowrap">
             Sign In
           </Link>
-          <Link href="/login" className="px-5 md:px-8 py-2.5 md:py-3 bg-foreground text-background rounded-full text-[10px] md:text-sm font-black uppercase tracking-[0.2em] hover:scale-105 transition-all shadow-xl shadow-foreground/10 active:scale-95 group flex items-center gap-2 whitespace-nowrap">
+          <Link href="/login" className="px-6 md:px-8 py-2.5 md:py-3 bg-foreground text-background rounded-full text-[10px] md:text-sm font-black uppercase tracking-[0.2em] hover:scale-105 transition-all shadow-xl shadow-foreground/10 active:scale-95 group flex items-center gap-2 whitespace-nowrap">
             Get Started <ArrowRight className="w-3.5 md:w-4 h-3.5 md:h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
