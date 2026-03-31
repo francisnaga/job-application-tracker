@@ -11,25 +11,10 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ThemeToggle } from '@/components/layout/ThemeToggle';
+import { BrandLogo } from '@/components/ui/BrandLogo';
 
 // --- Helper Components ---
 
-function VantageLogo() {
-  return (
-    <div className="flex items-center gap-3 md:gap-4 group cursor-pointer shrink-0">
-      <div className="relative w-8 h-8 md:w-9 md:h-9 flex items-center justify-center">
-        <svg viewBox="0 0 40 40" className="w-full h-full text-violet-500 fill-none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 12L20 28L28 12" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-          <circle cx="20" cy="12" r="3" fill="currentColor" />
-        </svg>
-      </div>
-      <div className="flex flex-col -space-y-1">
-        <span className="text-sm md:text-base font-semibold tracking-[0.2em] text-foreground uppercase">Vantage</span>
-        <span className="text-[8px] md:text-[9px] font-black uppercase tracking-[0.25em] text-slate-500">By Naga</span>
-      </div>
-    </div>
-  );
-}
 
 function MockJobTable({ limit = 4, showFilter = false }) {
   const [activeTab, setActiveTab] = useState('All');
@@ -59,14 +44,14 @@ function MockJobTable({ limit = 4, showFilter = false }) {
           ))}
         </div>
       )}
-      <div className="space-y-2 bg-black/40 p-4 rounded-xl border border-white/[0.04] backdrop-blur-3xl overflow-hidden">
+      <div className="space-y-2 bg-card/40 p-4 rounded-xl border border-border/40 backdrop-blur-3xl overflow-hidden">
         {jobs.slice(0, limit).map((job, idx) => (
           <motion.div 
             key={idx}
             initial={{ opacity: 0, x: 10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.1 * idx }}
-            className="flex items-center justify-between py-2.5 border-b border-white/[0.04] last:border-0"
+            className="flex items-center justify-between py-2.5 border-b border-border/40 last:border-0"
           >
             <div className="flex gap-3 items-center">
               <div className="w-8 h-8 rounded-lg bg-white/[0.05] flex items-center justify-center text-[10px] font-bold text-slate-400 border border-white/[0.05]">
@@ -106,24 +91,23 @@ function HeroDashboardPreview() {
          initial={{ opacity: 0, y: 20, scale: 0.95 }}
          animate={{ opacity: 1, y: 0, scale: 1 }}
          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-         className="relative z-10 bg-[#0a0a0f] border border-white/[0.08] rounded-2xl shadow-[0_40px_80px_rgba(139,92,246,0.2)] overflow-hidden"
+         className="relative z-10 bg-background border border-border/40 rounded-2xl shadow-premium-xl overflow-hidden"
        >
           {/* macOS window chrome */}
-          <div className="bg-[#1a1a2e] px-4 py-3 border-b border-white/[0.04] flex items-center gap-2">
+          <div className="bg-muted/30 px-4 py-3 border-b border-border/40 flex items-center gap-2">
              <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
              <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
              <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
           </div>
 
           <div className="flex h-[380px]">
-             {/* Mini Sidebar */}
-             <div className="w-32 border-right border-white/[0.04] p-4 flex flex-col gap-4 bg-white/[0.01]">
-                <div className="w-8 h-8 rounded-lg bg-violet-500/20 mb-2" />
+             <div className="w-32 border-right border-border/40 p-4 flex flex-col gap-4 bg-muted/5">
+                <div className="w-8 h-8 rounded-lg bg-primary/20 mb-2" />
                 <div className="space-y-4">
                   {['Dashboard', 'Applications', 'Analytics', 'Documents'].map((item, idx) => (
                     <div key={item} className={cn(
                       "text-[9px] font-bold px-2 py-1.5 rounded-md transition-colors",
-                      idx === 1 ? "bg-violet-600/20 text-violet-400" : "text-slate-600"
+                      idx === 1 ? "bg-primary/20 text-primary" : "text-muted-foreground/60"
                     )}>
                       {item}
                     </div>
@@ -132,7 +116,7 @@ function HeroDashboardPreview() {
              </div>
              
              {/* Content Area */}
-             <div className="flex-1 p-6 bg-black/20">
+             <div className="flex-1 p-6 bg-muted/10">
                 <MockJobTable />
              </div>
           </div>
@@ -163,12 +147,12 @@ function StatBlock({ value, label, icon: Icon, suffix = "" }: { value: number, l
       transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
       className="text-center space-y-6"
     >
-      <Icon className="w-6 h-6 text-violet-400 mx-auto" />
+      <Icon className="w-6 h-6 text-primary mx-auto" />
       <div className="space-y-1">
-        <div className="text-6xl md:text-7xl font-bold text-white tracking-tighter tabular-nums">
+        <div className="text-6xl md:text-7xl font-bold text-foreground tracking-tighter tabular-nums">
           <motion.span>{displayValue}</motion.span>{suffix}
         </div>
-        <p className="text-slate-500 text-[10px] font-black tracking-[0.3em] uppercase">{label}</p>
+        <p className="text-muted-foreground text-[10px] font-black tracking-[0.3em] uppercase">{label}</p>
       </div>
     </motion.div>
   );
@@ -196,7 +180,7 @@ function CTASubscription() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter your professional email" 
-          className="flex-1 bg-white/5 border border-white/10 rounded-full px-8 py-4.5 text-white placeholder:text-slate-500 outline-none focus:border-violet-500 transition-all font-medium text-sm text-center sm:text-left"
+          className="flex-1 bg-muted/20 border border-border/40 rounded-full px-8 py-4.5 text-foreground placeholder:text-muted-foreground/60 outline-none focus:border-primary transition-all font-medium text-sm text-center sm:text-left"
         />
         <button 
           onClick={handleSubscribe}
@@ -213,24 +197,24 @@ function CTASubscription() {
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-foreground overflow-x-hidden selection:bg-violet-500/30 font-sans">
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden selection:bg-primary/30 font-sans">
       {/* Dynamic Background */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-violet-600/10 blur-[120px] rounded-full animate-pulse opacity-50" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-indigo-500/10 blur-[120px] rounded-full animate-pulse delay-700 opacity-50" />
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 blur-[120px] rounded-full animate-pulse opacity-50" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/5 blur-[120px] rounded-full animate-pulse delay-700 opacity-50" />
       </div>
 
       {/* Navigation */}
       <nav className="relative z-50 flex items-center justify-between px-6 md:px-8 py-6 md:py-8 max-w-7xl mx-auto backdrop-blur-md">
-        <VantageLogo />
+        <BrandLogo />
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-3">
-            <span className="text-[10px] font-black uppercase tracking-widest text-slate-500 hidden md:block">Theme</span>
+            <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground hidden md:block">Theme</span>
             <div className="scale-75 origin-right">
               <ThemeToggle />
             </div>
           </div>
-          <Link href="/login" className="px-6 md:px-8 py-2.5 md:py-3 bg-foreground text-background rounded-full text-[10px] md:text-xs font-black uppercase tracking-[0.2em] hover:scale-105 transition-all shadow-xl shadow-primary/10 active:scale-95 group flex items-center gap-2 whitespace-nowrap">
+          <Link href="/login" className="px-6 md:px-8 py-2.5 md:py-3 bg-foreground text-background rounded-full text-[10px] md:text-xs font-black uppercase tracking-[0.2em] hover:scale-105 transition-all shadow-premium active:scale-95 group flex items-center gap-2 whitespace-nowrap">
             Sign in <ArrowRight className="w-3.5 md:w-4 h-3.5 md:h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
@@ -248,32 +232,32 @@ export default function LandingPage() {
               className="lg:col-span-5 space-y-12 text-center lg:text-left"
             >
               <div className="space-y-10">
-                <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-500/20 backdrop-blur-md">
-                  <Sparkles className="w-4 h-4 text-violet-500" />
-                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-violet-500">Job Application Tracker</span>
+                <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-md">
+                  <Sparkles className="w-4 h-4 text-primary" />
+                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-primary">Job Application Tracker</span>
                 </div>
                 
-                <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-[1.05] font-display text-white">
+                <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-[1.05] font-display text-foreground">
                   Landing your dream <br />
-                  <span className="text-violet-500">role</span> is now <br />
+                  <span className="text-primary">role</span> is now <br />
                   <span className="text-gradient">effortless.</span>
                 </h1>
                 
-                <p className="text-xl md:text-2xl text-slate-400 font-medium max-w-2xl leading-relaxed mx-auto lg:mx-0">
+                <p className="text-xl md:text-2xl text-muted-foreground font-medium max-w-2xl leading-relaxed mx-auto lg:mx-0">
                   Stop drowning in spreadsheets. Focus your job search with powerful insights and a beautifully designed dashboard.
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start">
-                  <Link href="/login" className="w-full sm:w-auto px-12 py-5.5 bg-violet-600 text-white rounded-2xl text-lg font-black uppercase tracking-widest shadow-2xl shadow-violet-600/30 hover:shadow-violet-600/50 hover:-translate-y-1.5 transition-all active:scale-95 flex items-center justify-center gap-4">
+                  <Link href="/login" className="w-full sm:w-auto px-12 py-5.5 bg-primary text-primary-foreground rounded-2xl text-lg font-black uppercase tracking-widest shadow-premium-xl hover:-translate-y-1.5 transition-all active:scale-95 flex items-center justify-center gap-4">
                   Get started <ArrowRight className="w-5.5 h-5.5" />
                   </Link>
                   <div className="flex items-center -space-x-3.5">
                     {[1, 2, 3, 4].map((i) => (
-                      <div key={i} className="w-11 h-11 rounded-full border-2 border-[#0a0a0f] bg-secondary flex items-center justify-center overflow-hidden shadow-premium">
+                      <div key={i} className="w-11 h-11 rounded-full border-2 border-background bg-secondary flex items-center justify-center overflow-hidden shadow-premium">
                         <img src={`https://i.pravatar.cc/100?u=${i+10}`} alt="user" className="w-full h-full object-cover opacity-90 grayscale hover:grayscale-0 transition-all duration-300" />
                       </div>
                     ))}
-                    <div className="pl-6 text-[10px] font-black text-slate-500 uppercase tracking-widest">Managing 2k+ Roles</div>
+                    <div className="pl-6 text-[10px] font-black text-muted-foreground uppercase tracking-widest">Managing 2k+ Roles</div>
                   </div>
                 </div>
               </div>
@@ -287,7 +271,7 @@ export default function LandingPage() {
         </section>
 
         {/* 1. Social Proof Marquee */}
-        <section className="relative z-20 border-y border-white/[0.05] bg-[#0a0a0f] py-4 overflow-hidden">
+        <section className="relative z-20 border-y border-border/40 bg-background py-4 overflow-hidden">
           <style jsx>{`
             @keyframes scroll {
               0% { transform: translateX(0); }
@@ -302,23 +286,23 @@ export default function LandingPage() {
           <div className="animate-scroll">
             {[...Array(2)].map((_, i) => (
               <div key={i} className="flex shrink-0 items-center">
-                <span className="mx-12 text-slate-400 text-[10px] font-black uppercase tracking-[0.3em] flex items-center gap-3">
-                  <span className="text-violet-500">⚡</span> 94k+ Applications Tracked
+                <span className="mx-12 text-muted-foreground text-[10px] font-black uppercase tracking-[0.3em] flex items-center gap-3">
+                  <span className="text-primary">⚡</span> 94k+ Applications Tracked
                 </span>
-                <span className="mx-12 text-slate-400 text-[10px] font-black uppercase tracking-[0.3em] flex items-center gap-3">
-                  <span className="text-violet-500">🌍</span> Used in 40+ Countries
+                <span className="mx-12 text-muted-foreground text-[10px] font-black uppercase tracking-[0.3em] flex items-center gap-3">
+                  <span className="text-primary">🌍</span> Used in 40+ Countries
                 </span>
-                <span className="mx-12 text-slate-400 text-[10px] font-black uppercase tracking-[0.3em] flex items-center gap-3">
-                  <span className="text-violet-500">⭐</span> 4.9 Star Rating
+                <span className="mx-12 text-muted-foreground text-[10px] font-black uppercase tracking-[0.3em] flex items-center gap-3">
+                  <span className="text-primary">⭐</span> 4.9 Star Rating
                 </span>
-                <span className="mx-12 text-slate-400 text-[10px] font-black uppercase tracking-[0.3em] flex items-center gap-3">
-                  <span className="text-violet-500">🔐</span> Zero Data Leaks
+                <span className="mx-12 text-muted-foreground text-[10px] font-black uppercase tracking-[0.3em] flex items-center gap-3">
+                  <span className="text-primary">🔐</span> Zero Data Leaks
                 </span>
-                <span className="mx-12 text-slate-400 text-[10px] font-black uppercase tracking-[0.3em] flex items-center gap-3">
-                  <span className="text-violet-500">📄</span> Built for Serious Job Seekers
+                <span className="mx-12 text-muted-foreground text-[10px] font-black uppercase tracking-[0.3em] flex items-center gap-3">
+                  <span className="text-primary">📄</span> Built for Serious Job Seekers
                 </span>
-                <span className="mx-12 text-slate-400 text-[10px] font-black uppercase tracking-[0.3em] flex items-center gap-3">
-                  <span className="text-violet-500">🚀</span> First Apply to Signed Offer
+                <span className="mx-12 text-muted-foreground text-[10px] font-black uppercase tracking-[0.3em] flex items-center gap-3">
+                  <span className="text-primary">🚀</span> First Apply to Signed Offer
                 </span>
               </div>
             ))}
@@ -326,7 +310,7 @@ export default function LandingPage() {
         </section>
 
         {/* 2. Feature Bento Grid */}
-        <section className="py-24 bg-[#0a0a0f]">
+        <section className="py-24 bg-background">
           <div className="max-w-7xl mx-auto px-8">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
@@ -335,8 +319,8 @@ export default function LandingPage() {
               transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
               className="mb-16 space-y-4 text-center md:text-left"
             >
-              <h2 className="text-xs font-black uppercase tracking-[0.4em] text-violet-500">Everything you need</h2>
-              <h3 className="text-4xl font-bold text-white tracking-tight leading-tight">Focus on what matters.</h3>
+              <h2 className="text-xs font-black uppercase tracking-[0.4em] text-primary">Everything you need</h2>
+              <h3 className="text-4xl font-bold text-foreground tracking-tight leading-tight">Focus on what matters.</h3>
             </motion.div>
 
             <motion.div 
@@ -355,15 +339,15 @@ export default function LandingPage() {
                   hidden: { opacity: 0, y: 20 },
                   show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
                 }}
-                className="md:col-span-2 md:row-span-2 group bg-[#111118] border border-white/[0.06] rounded-2xl p-8 hover:border-violet-500/30 hover:shadow-[0_0_30px_rgba(139,92,246,0.1)] transition-all duration-300 overflow-hidden flex flex-col justify-between min-h-[520px]"
+                className="md:col-span-2 md:row-span-2 group bg-card border border-border/40 rounded-2xl p-8 hover:border-primary/30 shadow-premium hover:shadow-premium-xl transition-all duration-300 overflow-hidden flex flex-col justify-between min-h-[520px]"
               >
                 <div className="space-y-6">
-                  <div className="w-12 h-12 bg-violet-500/10 rounded-xl flex items-center justify-center border border-violet-500/20 group-hover:scale-110 transition-transform">
-                    <Briefcase className="w-6 h-6 text-violet-500" />
+                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center border border-primary/20 group-hover:scale-110 transition-transform">
+                    <Briefcase className="w-6 h-6 text-primary" />
                   </div>
                   <div className="space-y-2">
-                    <h4 className="text-xl font-bold text-white tracking-tight">Application Tracking</h4>
-                    <p className="text-slate-400 text-sm leading-relaxed max-w-sm">Organize your search with a high-fidelity interface modeled after elite CRM tools.</p>
+                    <h4 className="text-xl font-bold text-foreground tracking-tight">Application Tracking</h4>
+                    <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">Organize your search with a high-fidelity interface modeled after elite CRM tools.</p>
                   </div>
                 </div>
                 <MockJobTable limit={5} showFilter={true} />
@@ -379,14 +363,14 @@ export default function LandingPage() {
               >
                 <div className="space-y-6">
                   <div className="flex justify-between items-start">
-                    <div className="w-12 h-12 bg-violet-500/10 rounded-xl flex items-center justify-center border border-violet-500/20 group-hover:scale-110 transition-transform">
-                      <BarChart2 className="w-6 h-6 text-violet-500" />
+                    <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center border border-primary/20 group-hover:scale-110 transition-transform">
+                      <BarChart2 className="w-6 h-6 text-primary" />
                     </div>
                     <span className="text-[10px] font-black text-green-500 bg-green-500/10 px-2 py-1 rounded-md">↑ 23%</span>
                   </div>
                   <div className="space-y-1">
-                    <h4 className="text-xl font-bold text-white">Analytics</h4>
-                    <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest text-center md:text-left">Applications this month</p>
+                    <h4 className="text-xl font-bold text-foreground">Analytics</h4>
+                    <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-widest text-center md:text-left">Applications this month</p>
                   </div>
                 </div>
                 <div className="h-24 w-full flex items-end gap-1 mt-8">
@@ -399,30 +383,29 @@ export default function LandingPage() {
                       transition={{ delay: 0.5 + (i * 0.05), duration: 0.8 }}
                       className={cn(
                         "flex-1 rounded-t-sm transition-colors",
-                        i === 6 ? "bg-violet-500 shadow-[0_0_15px_rgba(139,92,246,0.3)]" : "bg-white/10 group-hover:bg-violet-500/30"
+                        i === 6 ? "bg-primary shadow-[0_0_15px_rgba(139,92,246,0.3)]" : "bg-foreground/10 group-hover:bg-primary/30"
                       )}
                     />
                   ))}
                 </div>
                 <div className="mt-4 flex justify-between items-center bg-white/[0.02] p-2 rounded-lg border border-white/[0.04]">
-                  <span className="text-[9px] font-bold text-slate-500 uppercase">Growth Rate</span>
-                  <span className="text-green-400 text-xs font-black">↑ 23% <span className="text-[8px] text-slate-600 font-medium">VS LAST MONTH</span></span>
+                  <span className="text-[9px] font-bold text-muted-foreground uppercase">Growth Rate</span>
+                  <span className="text-green-400 text-xs font-black">↑ 23% <span className="text-[8px] text-muted-foreground/60 font-medium">VS LAST MONTH</span></span>
                 </div>
               </motion.div>
 
               {/* Document Hub */}
               <motion.div 
                 variants={{
-                  hidden: { opacity: 0, y: 20 },
                   show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
                 }}
-                className="group bg-[#111118] border border-white/[0.06] rounded-2xl p-8 hover:border-violet-500/30 hover:shadow-[0_0_30px_rgba(139,92,246,0.1)] transition-all duration-300 flex flex-col justify-between"
+                className="group bg-card border border-border/40 rounded-2xl p-8 hover:border-primary/30 shadow-premium transition-all duration-300 flex flex-col justify-between"
               >
                 <div className="space-y-6">
-                  <div className="w-12 h-12 bg-violet-500/10 rounded-xl flex items-center justify-center border border-violet-500/20 group-hover:scale-110 transition-transform">
-                    <FileText className="w-6 h-6 text-violet-500" />
+                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center border border-primary/20 group-hover:scale-110 transition-transform">
+                    <FileText className="w-6 h-6 text-primary" />
                   </div>
-                  <h4 className="text-xl font-bold text-white tracking-tight">Document Hub</h4>
+                  <h4 className="text-xl font-bold text-foreground tracking-tight">Document Hub</h4>
                 </div>
                 <div className="flex flex-col gap-3 mt-6">
                   {[
@@ -432,18 +415,18 @@ export default function LandingPage() {
                   ].map(file => (
                     <div key={file.name} className="flex items-center justify-between group/file">
                        <div className="flex items-center gap-2">
-                        <FileText className="w-3.5 h-3.5 text-slate-500" />
-                        <span className="text-[10px] font-bold text-slate-400">{file.name}</span>
+                        <FileText className="w-3.5 h-3.5 text-muted-foreground/60" />
+                        <span className="text-[10px] font-bold text-muted-foreground">{file.name}</span>
                        </div>
                        <div className="flex items-center gap-2">
-                        <span className="text-[8px] text-slate-700 font-bold uppercase tracking-widest">{file.size}</span>
-                        <Download className="w-3 h-3 text-slate-700 opacity-0 group-hover/file:opacity-100 transition-opacity cursor-pointer hover:text-violet-500" />
+                        <span className="text-[8px] text-muted-foreground/40 font-bold uppercase tracking-widest">{file.size}</span>
+                        <Download className="w-3 h-3 text-muted-foreground/40 opacity-0 group-hover/file:opacity-100 transition-opacity cursor-pointer hover:text-primary" />
                        </div>
                     </div>
                   ))}
                   <div className="mt-4 p-4 border border-dashed border-white/10 rounded-xl flex items-center justify-center gap-2 group-hover:border-violet-500/30 transition-colors cursor-pointer bg-white/[0.01]">
-                    <Plus className="w-3.5 h-3.5 text-slate-600" />
-                    <span className="text-[10px] font-black text-slate-600 uppercase tracking-widest">Upload new</span>
+                    <Plus className="w-3.5 h-3.5 text-muted-foreground/40" />
+                    <span className="text-[10px] font-black text-muted-foreground/40 uppercase tracking-widest">Upload new</span>
                   </div>
                 </div>
               </motion.div>
@@ -454,20 +437,20 @@ export default function LandingPage() {
                   hidden: { opacity: 0, y: 20 },
                   show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
                 }}
-                className="group bg-[#111118] border border-white/[0.06] rounded-2xl p-8 hover:border-violet-500/30 hover:shadow-[0_0_30px_rgba(139,92,246,0.1)] transition-all duration-300 flex flex-col justify-between"
+                className="group bg-card border border-border/40 rounded-2xl p-8 hover:border-primary/30 shadow-premium transition-all duration-300 flex flex-col justify-between"
               >
                 <div className="flex justify-between items-start">
-                  <div className="w-12 h-12 bg-violet-500/10 rounded-xl flex items-center justify-center border border-violet-500/20 group-hover:scale-110 transition-transform">
-                    <User className="w-6 h-6 text-violet-500" />
+                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center border border-primary/20 group-hover:scale-110 transition-transform">
+                    <User className="w-6 h-6 text-primary" />
                   </div>
-                  <button className="text-[10px] font-black text-violet-400 uppercase tracking-widest">Edit</button>
+                  <button className="text-[10px] font-black text-primary uppercase tracking-widest">Edit</button>
                 </div>
                 <div className="space-y-6 mt-8">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-xs font-bold text-white">N</div>
+                    <div className="w-10 h-10 rounded-full border border-border/40 bg-muted/20 flex items-center justify-center text-xs font-bold text-foreground">N</div>
                     <div>
-                      <h5 className="text-white font-bold text-sm">Naga</h5>
-                      <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Senior Product Designer</p>
+                      <h5 className="text-foreground font-bold text-sm">Naga</h5>
+                      <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-widest">Senior Product Designer</p>
                     </div>
                   </div>
                   <div className="space-y-2 border-t border-white/[0.04] pt-4">
@@ -489,15 +472,15 @@ export default function LandingPage() {
                   hidden: { opacity: 0, y: 20 },
                   show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
                 }}
-                className="md:col-span-2 group bg-[#111118] border border-white/[0.06] rounded-2xl p-8 hover:border-violet-500/30 hover:shadow-[0_0_30px_rgba(139,92,246,0.1)] transition-all duration-300 flex items-center justify-between gap-12"
+                className="md:col-span-2 group bg-card border border-border/40 rounded-2xl p-8 hover:border-primary/30 shadow-premium transition-all duration-300 flex items-center justify-between gap-12"
               >
                 <div className="space-y-6">
-                  <div className="w-12 h-12 bg-violet-500/10 rounded-xl flex items-center justify-center border border-violet-500/20 group-hover:scale-110 transition-transform">
-                    <Smartphone className="w-6 h-6 text-violet-500" />
+                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center border border-primary/20 group-hover:scale-110 transition-transform">
+                    <Smartphone className="w-6 h-6 text-primary" />
                   </div>
                   <div className="space-y-2">
-                    <h4 className="text-xl font-bold text-white tracking-tight leading-tight">Mobile Optimized</h4>
-                    <p className="text-slate-500 text-xs leading-relaxed max-w-sm">Zero-zoom iOS inputs. Gesture-native layouts. Built for on-the-go management.</p>
+                    <h4 className="text-xl font-bold text-foreground tracking-tight leading-tight">Mobile Optimized</h4>
+                    <p className="text-muted-foreground text-xs leading-relaxed max-w-sm">Zero-zoom iOS inputs. Gesture-native layouts. Built for on-the-go management.</p>
                   </div>
                 </div>
 
@@ -550,7 +533,7 @@ export default function LandingPage() {
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 1.5, ease: [0.25, 1, 0.5, 1], delay: 0.2 }}
-                className="absolute top-5 left-[15%] right-[15%] h-px border-t border-dashed border-violet-500/20 origin-left hidden md:block"
+                className="absolute top-5 left-[15%] right-[15%] h-px border-t border-dashed border-primary/20 origin-left hidden md:block"
               />
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 relative z-10">
@@ -567,12 +550,12 @@ export default function LandingPage() {
                     transition={{ duration: 0.5, delay: i * 0.15, ease: [0.25, 0.1, 0.25, 1] }}
                     className="text-center space-y-6 px-4"
                   >
-                    <div className="w-10 h-10 rounded-full bg-violet-600 text-white font-bold flex items-center justify-center mx-auto shadow-[0_0_20px_rgba(124,58,237,0.4)] relative z-20">
+                    <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold flex items-center justify-center mx-auto shadow-premium relative z-20">
                       {i + 1}
                     </div>
                     <div className="space-y-3">
-                      <h4 className="text-xl font-bold text-white tracking-tight">{step.title}</h4>
-                      <p className="text-slate-500 text-sm leading-relaxed mx-auto max-w-[260px] font-medium">{step.desc}</p>
+                      <h4 className="text-xl font-bold text-foreground tracking-tight">{step.title}</h4>
+                      <p className="text-muted-foreground text-sm leading-relaxed mx-auto max-w-[260px] font-medium">{step.desc}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -582,7 +565,7 @@ export default function LandingPage() {
         </section>
 
         {/* 5. CTA Banner — FIXED HEADLINE */}
-        <section className="py-32 bg-gradient-to-br from-violet-950 via-[#0a0a0f] to-indigo-950">
+        <section className="py-32 bg-gradient-to-br from-primary/20 via-background to-secondary/20">
           <div className="max-w-4xl mx-auto px-8 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -591,7 +574,7 @@ export default function LandingPage() {
               transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
               className="space-y-12"
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight leading-[1.1] mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-[1.1] mb-12">
                 Your next role is one <br className="hidden md:block" /> dashboard away.
               </h2>
               <CTASubscription />
@@ -601,49 +584,49 @@ export default function LandingPage() {
       </main>
 
       {/* Footer — SaaS Elevation */}
-      <footer className="relative z-10 border-t border-white/[0.06] bg-[#0a0a0f]">
+      <footer className="relative z-10 border-t border-border/40 bg-background text-foreground">
          <div className="max-w-7xl mx-auto px-8 py-20">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24 mb-16 px-1">
                <div className="md:col-span-4 space-y-6">
-                  <VantageLogo />
-                  <p className="text-slate-500 font-medium text-xs leading-relaxed max-w-xs">The elite career intelligence suite for senior professionals and engineers. Build your legacy with data-driven job searches.</p>
+                  <BrandLogo />
+                  <p className="text-muted-foreground font-medium text-xs leading-relaxed max-w-xs">The elite career intelligence suite for senior professionals and engineers. Build your legacy with data-driven job searches.</p>
                </div>
                
                <div className="md:col-span-4 flex flex-col md:flex-row justify-center gap-12 md:gap-24">
                   <div className="space-y-6">
-                     <h5 className="text-[10px] font-black text-white uppercase tracking-[0.3em]">Product</h5>
-                     <div className="flex flex-col gap-4 text-xs font-bold text-slate-500">
-                        <a href="#" className="hover:text-violet-400 transition-colors">Overview</a>
-                        <a href="#" className="hover:text-violet-400 transition-colors">Changelog</a>
-                        <a href="#" className="hover:text-violet-400 transition-colors">API</a>
+                     <h5 className="text-[10px] font-black text-foreground uppercase tracking-[0.3em]">Product</h5>
+                     <div className="flex flex-col gap-4 text-xs font-bold text-muted-foreground/60">
+                        <a href="#" className="hover:text-primary transition-colors">Overview</a>
+                        <a href="#" className="hover:text-primary transition-colors">Changelog</a>
+                        <a href="#" className="hover:text-primary transition-colors">API</a>
                      </div>
                   </div>
                   <div className="space-y-6">
-                     <h5 className="text-[10px] font-black text-white uppercase tracking-[0.3em]">Legal</h5>
-                     <div className="flex flex-col gap-4 text-xs font-bold text-slate-500">
-                        <a href="#" className="hover:text-violet-400 transition-colors">Privacy</a>
-                        <a href="#" className="hover:text-violet-400 transition-colors">Terms</a>
-                        <a href="#" className="hover:text-violet-400 transition-colors">Cookie Policy</a>
+                     <h5 className="text-[10px] font-black text-foreground uppercase tracking-[0.3em]">Legal</h5>
+                     <div className="flex flex-col gap-4 text-xs font-bold text-muted-foreground/60">
+                        <a href="#" className="hover:text-primary transition-colors">Privacy</a>
+                        <a href="#" className="hover:text-primary transition-colors">Terms</a>
+                        <a href="#" className="hover:text-primary transition-colors">Cookie Policy</a>
                      </div>
                   </div>
                   <div className="space-y-6">
-                     <h5 className="text-[10px] font-black text-white uppercase tracking-[0.3em]">Support</h5>
-                     <div className="flex flex-col gap-4 text-xs font-bold text-slate-500">
-                        <a href="#" className="hover:text-violet-400 transition-colors">Help Center</a>
-                        <a href="#" className="hover:text-violet-400 transition-colors">Community</a>
-                        <a href="#" className="hover:text-violet-400 transition-colors">Contact</a>
+                     <h5 className="text-[10px] font-black text-foreground uppercase tracking-[0.3em]">Support</h5>
+                     <div className="flex flex-col gap-4 text-xs font-bold text-muted-foreground/60">
+                        <a href="#" className="hover:text-primary transition-colors">Help Center</a>
+                        <a href="#" className="hover:text-primary transition-colors">Community</a>
+                        <a href="#" className="hover:text-primary transition-colors">Contact</a>
                      </div>
                   </div>
                </div>
 
                <div className="md:col-span-4 text-right">
-                  <p className="text-slate-600 font-black text-[10px] uppercase tracking-widest">Built by Naga</p>
-                  <p className="text-slate-800 text-[9px] mt-1 font-bold uppercase tracking-widest">In pursuit of excellence</p>
+                  <p className="text-muted-foreground/40 font-black text-[10px] uppercase tracking-widest">Built by Naga</p>
+                  <p className="text-muted-foreground/20 text-[9px] mt-1 font-bold uppercase tracking-widest">In pursuit of excellence</p>
                </div>
             </div>
 
-            <div className="pt-8 border-t border-white/[0.03] flex flex-col md:flex-row justify-between items-center gap-6">
-               <p className="text-[10px] font-bold text-slate-700 uppercase tracking-[0.3em]">
+            <div className="pt-8 border-t border-border/40 flex flex-col md:flex-row justify-between items-center gap-6 text-muted-foreground/40">
+               <p className="text-[10px] font-bold uppercase tracking-[0.3em]">
                  © 2025 Vantage • ALL RIGHTS RESERVED.
                </p>
                <div className="flex gap-6 h-8 items-center grayscale opacity-30 hover:grayscale-0 hover:opacity-100 transition-all">

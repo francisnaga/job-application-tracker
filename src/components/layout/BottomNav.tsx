@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, FileText, Plus, BarChart3, User, LayoutDashboard, Briefcase, TrendingUp, Compass, Users } from 'lucide-react';
+import { Home, FileText, Plus, BarChart3, User, LayoutDashboard, Briefcase, TrendingUp, Users } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
 import ApplicationFormModal from '@/components/applications/ApplicationFormModal';
@@ -29,7 +29,7 @@ export function BottomNav() {
           <div className="flex w-[40%] justify-around">
             {navItems.map((item) => {
               const isActive = pathname.startsWith(item.href);
-              const Icon = item.name === 'Home' ? Compass : item.icon;
+              const Icon = item.icon;
               return (
                 <Link
                   key={item.href}

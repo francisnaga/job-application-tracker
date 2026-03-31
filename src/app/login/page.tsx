@@ -3,10 +3,12 @@
 import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { loginWithGoogle } from './actions';
-import { Mail, ArrowRight, Briefcase, ChevronLeft, Compass } from 'lucide-react';
+import { Mail, ArrowRight, Briefcase, ChevronLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { BrandLogo } from '@/components/ui/BrandLogo';
+import { Skeleton } from '@/components/ui/Skeleton';
 
 function LoginContent() {
   const searchParams = useSearchParams();
@@ -35,13 +37,8 @@ function LoginContent() {
       >
         <div className="surface p-10 md:p-12 space-y-10 shadow-premium-xl bg-card border-border/50">
           <div className="space-y-6">
-            <div className="w-14 h-14 bg-primary text-white rounded-2xl flex items-center justify-center shadow-2xl shadow-primary/30 group-hover:rotate-6 transition-all duration-500">
-              <Compass className="w-7 h-7" />
-            </div>
+            <BrandLogo size="lg" />
             <div className="space-y-2">
-              <h1 className="text-3xl font-bold tracking-tighter text-foreground font-display uppercase">
-                Vantage
-              </h1>
               <p className="text-muted-foreground font-medium leading-relaxed">
                 Log in to your career dashboard.
               </p>
@@ -120,7 +117,14 @@ function LoginContent() {
 
 export default function LoginPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center text-muted-foreground uppercase tracking-widest text-[10px] font-black animate-pulse">Loading...</div>}>
+    <Suspense fallback={
+      <div className="min-h-screen bg-background flex flex-col items-center justify-center p-6 gap-8">
+        <Skeleton className="w-14 h-14 rounded-2xl" />
+        <div className="w-full max-w-md space-y-4">
+          <Skeleton className="h-64 w-full rounded-2xl" />
+        </div>
+      </div>
+    }>
       <LoginContent />
     </Suspense>
   );

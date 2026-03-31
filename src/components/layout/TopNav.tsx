@@ -1,11 +1,12 @@
 'use client';
 
-import { Bell, Search, User, Inbox, HelpCircle, ChevronRight, Compass } from 'lucide-react';
+import { Bell, Search, User, Inbox, HelpCircle, ChevronRight } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ThemeToggle } from './ThemeToggle';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import { BrandLogo } from '@/components/ui/BrandLogo';
 
 export function TopNav() {
   const pathname = usePathname();
@@ -23,10 +24,7 @@ export function TopNav() {
       <div className="flex items-center gap-6">
         {/* Mobile Brand */}
         <div className="flex items-center gap-3 md:hidden">
-          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-            <Compass className="w-4 h-4 text-primary-foreground" />
-          </div>
-          <span className="text-lg font-bold tracking-tighter uppercase font-display">Vantage</span>
+          <BrandLogo size="sm" />
         </div>
 
         {/* Desktop Breadcrumbs */}

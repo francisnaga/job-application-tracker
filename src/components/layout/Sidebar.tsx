@@ -2,8 +2,9 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, FileText, BarChart3, LogOut, Briefcase, User, Search, Settings, Compass, Users, TrendingUp, Calendar } from 'lucide-react';
+import { LayoutDashboard, FileText, BarChart3, LogOut, Briefcase, User, Search, Settings, Users, TrendingUp, Calendar } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { BrandLogo } from '@/components/ui/BrandLogo';
 import { createBrowserClient } from '@supabase/ssr';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
@@ -35,14 +36,8 @@ export function Sidebar() {
     <aside className="hidden w-72 md:flex flex-col fixed left-0 top-0 h-screen z-40 bg-card border-r border-border/10 overflow-hidden">
       {/* Brand Header */}
       <div className="p-10 pb-12">
-        <Link href="/dashboard" className="flex items-center gap-3.5 group">
-          <div className="w-10 h-10 bg-primary text-white rounded-xl flex items-center justify-center shadow-lg shadow-primary/25 group-hover:rotate-6 group-hover:scale-110 transition-all duration-500">
-            <Compass className="w-5.5 h-5.5" />
-          </div>
-          <div className="flex flex-col -gap-1">
-            <span className="text-2xl font-bold tracking-tighter font-display uppercase">Vantage</span>
-            <span className="text-[8px] font-black uppercase tracking-[0.2em] text-primary/60 ml-0.5">By Naga</span>
-          </div>
+        <Link href="/dashboard" className="block outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-xl">
+          <BrandLogo size="md" />
         </Link>
       </div>
 

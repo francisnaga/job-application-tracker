@@ -12,7 +12,7 @@ export function Skeleton({ className, variant = 'rectangular' }: SkeletonProps) 
   return (
     <div
       className={cn(
-        "relative overflow-hidden bg-white/5",
+        "relative overflow-hidden bg-muted/20 backdrop-blur-sm",
         variant === 'circular' ? "rounded-full" : variant === 'rounded' ? "rounded-2xl" : "rounded-lg",
         className
       )}
@@ -22,11 +22,11 @@ export function Skeleton({ className, variant = 'rectangular' }: SkeletonProps) 
           x: ['-100%', '200%'],
         }}
         transition={{
-          duration: 1.5,
+          duration: 1.8,
           repeat: Infinity,
           ease: 'linear',
         }}
-        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent w-full h-full"
+        className="absolute inset-0 bg-gradient-to-r from-transparent via-muted/40 to-transparent w-full h-full"
       />
     </div>
   );
