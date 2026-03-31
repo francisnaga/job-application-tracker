@@ -24,7 +24,7 @@ function VantageLogo() {
         </svg>
       </div>
       <div className="flex flex-col -space-y-1">
-        <span className="text-sm md:text-base font-semibold tracking-[0.2em] text-white uppercase">Vantage</span>
+        <span className="text-sm md:text-base font-semibold tracking-[0.2em] text-foreground uppercase">Vantage</span>
         <span className="text-[8px] md:text-[9px] font-black uppercase tracking-[0.25em] text-slate-500">By Naga</span>
       </div>
     </div>
@@ -225,12 +225,12 @@ export default function LandingPage() {
         <VantageLogo />
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-3">
-            <span className="text-[10px] font-black uppercase tracking-widest text-slate-700 hidden md:block">Theme</span>
+            <span className="text-[10px] font-black uppercase tracking-widest text-slate-500 hidden md:block">Theme</span>
             <div className="scale-75 origin-right">
               <ThemeToggle />
             </div>
           </div>
-          <Link href="/login" className="px-6 md:px-8 py-2.5 md:py-3 bg-white text-black rounded-full text-[10px] md:text-xs font-black uppercase tracking-[0.2em] hover:scale-105 transition-all shadow-xl shadow-white/10 active:scale-95 group flex items-center gap-2 whitespace-nowrap">
+          <Link href="/login" className="px-6 md:px-8 py-2.5 md:py-3 bg-foreground text-background rounded-full text-[10px] md:text-xs font-black uppercase tracking-[0.2em] hover:scale-105 transition-all shadow-xl shadow-primary/10 active:scale-95 group flex items-center gap-2 whitespace-nowrap">
             Sign in <ArrowRight className="w-3.5 md:w-4 h-3.5 md:h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
@@ -303,7 +303,7 @@ export default function LandingPage() {
             {[...Array(2)].map((_, i) => (
               <div key={i} className="flex shrink-0 items-center">
                 <span className="mx-12 text-slate-400 text-[10px] font-black uppercase tracking-[0.3em] flex items-center gap-3">
-                  <span className="text-violet-500">⚡</span> 2,400+ Applications Tracked
+                  <span className="text-violet-500">⚡</span> 94k+ Applications Tracked
                 </span>
                 <span className="mx-12 text-slate-400 text-[10px] font-black uppercase tracking-[0.3em] flex items-center gap-3">
                   <span className="text-violet-500">🌍</span> Used in 40+ Countries
@@ -386,22 +386,27 @@ export default function LandingPage() {
                   </div>
                   <div className="space-y-1">
                     <h4 className="text-xl font-bold text-white">Analytics</h4>
-                    <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Applications this month</p>
+                    <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest text-center md:text-left">Applications this month</p>
                   </div>
                 </div>
-                <div className="h-24 w-full flex items-end gap-1.5 mt-8 px-1">
-                  {[40, 70, 45, 90, 65, 80, 50, 85].map((h, i) => (
+                <div className="h-24 w-full flex items-end gap-1 mt-8">
+                  {[40, 55, 35, 70, 50, 65, 90].map((h, i) => (
                     <motion.div 
                       key={i}
                       initial={{ height: 0 }}
-                      whileInView={{ height: `${h}%` }}
+                      whileInView={{ height: `${h}px` }}
+                      viewport={{ once: true }}
                       transition={{ delay: 0.5 + (i * 0.05), duration: 0.8 }}
                       className={cn(
-                        "flex-1 rounded-t-lg transition-colors",
-                        i === 7 ? "bg-violet-500" : "bg-white/10 group-hover:bg-violet-500/40"
+                        "flex-1 rounded-t-sm transition-colors",
+                        i === 6 ? "bg-violet-500 shadow-[0_0_15px_rgba(139,92,246,0.3)]" : "bg-white/10 group-hover:bg-violet-500/30"
                       )}
                     />
                   ))}
+                </div>
+                <div className="mt-4 flex justify-between items-center bg-white/[0.02] p-2 rounded-lg border border-white/[0.04]">
+                  <span className="text-[9px] font-bold text-slate-500 uppercase">Growth Rate</span>
+                  <span className="text-green-400 text-xs font-black">↑ 23% <span className="text-[8px] text-slate-600 font-medium">VS LAST MONTH</span></span>
                 </div>
               </motion.div>
 
@@ -519,8 +524,8 @@ export default function LandingPage() {
         {/* 3. Animated Stats Row */}
         <section className="border-y border-white/[0.06] py-24 bg-[#0a0a0f]">
           <div className="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-3 gap-16">
-            <StatBlock value={2400} label="Applications Tracked" icon={Briefcase} suffix="+" />
-            <StatBlock value={94} label="Interviews Landed" icon={TrendingUp} suffix="k+" />
+            <StatBlock value={94} label="Applications Tracked" icon={Briefcase} suffix="k+" />
+            <StatBlock value={2400} label="Interviews Landed" icon={TrendingUp} suffix="+" />
             <StatBlock value={3} label="Faster Job Search" icon={Sparkles} suffix="×" />
           </div>
         </section>
@@ -539,7 +544,7 @@ export default function LandingPage() {
             </motion.div>
 
             <div className="relative">
-              {/* Connector Line - FIXED SCALE & POSITION */}
+              {/* Connector Line */}
               <motion.div 
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
@@ -548,27 +553,18 @@ export default function LandingPage() {
                 className="absolute top-5 left-[15%] right-[15%] h-px border-t border-dashed border-violet-500/20 origin-left hidden md:block"
               />
 
-              <motion.div 
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, margin: "-100px" }}
-                variants={{
-                  hidden: {},
-                  show: { transition: { staggerChildren: 0.2 } }
-                }}
-                className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 relative z-10"
-              >
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 relative z-10">
                 {[
                   { title: 'Add Your Applications', desc: 'Log a role in under 30 seconds. Paste a URL or fill manually.' },
-                  { title: 'Track Every Stage', desc: 'Move applications: Applied → Interview → Offer. Add notes and contacts.' },
-                  { title: 'Land the Offer', desc: 'Analytics show your response rate, busiest days, and what is working for you.' },
+                  { title: 'Track Every Stage', desc: 'Move applications: Applied → Interview → Offer. Add notes and contacts per role.' },
+                  { title: 'Land the Offer', desc: 'Analytics show your response rate, busiest application days, and what\'s working.' },
                 ].map((step, i) => (
                   <motion.div 
                     key={i}
-                    variants={{
-                      hidden: { opacity: 0, y: 20 },
-                      show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] } }
-                    }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "0px 0px 0px 0px" }}
+                    transition={{ duration: 0.5, delay: i * 0.15, ease: [0.25, 0.1, 0.25, 1] }}
                     className="text-center space-y-6 px-4"
                   >
                     <div className="w-10 h-10 rounded-full bg-violet-600 text-white font-bold flex items-center justify-center mx-auto shadow-[0_0_20px_rgba(124,58,237,0.4)] relative z-20">
@@ -576,11 +572,11 @@ export default function LandingPage() {
                     </div>
                     <div className="space-y-3">
                       <h4 className="text-xl font-bold text-white tracking-tight">{step.title}</h4>
-                      <p className="text-slate-500 text-sm leading-relaxed mx-auto max-w-[280px] font-medium">{step.desc}</p>
+                      <p className="text-slate-500 text-sm leading-relaxed mx-auto max-w-[260px] font-medium">{step.desc}</p>
                     </div>
                   </motion.div>
                 ))}
-              </motion.div>
+              </div>
             </div>
           </div>
         </section>
@@ -595,7 +591,7 @@ export default function LandingPage() {
               transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
               className="space-y-12"
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight">
+              <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight leading-[1.1] mb-12">
                 Your next role is one <br className="hidden md:block" /> dashboard away.
               </h2>
               <CTASubscription />
