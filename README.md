@@ -1,3 +1,15 @@
+<p align="center">
+  <img src="public/vantage-mark.svg" alt="Vantage Brand Mark" width="100" height="100" />
+</p>
+
+<h1 align="center">Vantage</h1>
+
+<p align="center">
+  <strong>Minimalist, high-fidelity career dashboard and application pipeline tracker built with Next.js 16, TypeScript, and Tailwind CSS.</strong>
+</p>
+
+---
+
 # Vantage
 
 A minimalist, high-fidelity career dashboard for tracking applications and managing your professional search. Built with a focus on speed, clarity, and premium UI.
@@ -37,4 +49,4 @@ npm run dev
 - **Secure by Default**: All data access is hardened through Supabase Row Level Security (RLS).
 
 ---
-**Vantage** — *Simplify your career search.*
+**Vantage**  -  *Simplify your career search.*
